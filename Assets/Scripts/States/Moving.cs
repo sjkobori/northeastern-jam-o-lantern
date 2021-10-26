@@ -1,38 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
-public class Moving : BaseState
+public class Moving : MovementState
 {
-    private MovementSM _sm;
     private float _horizontalInput;
+    private Rigidbody2D _rigidbody2D;
 
-    public Moving(MovementSM stateMachine) : base("Moving", stateMachine) {
-        _sm = (MovementSM)stateMachine;
+    public Moving(GameObject gameObject, FloatReference speed) : base(gameObject, speed) {
+        
     }
+    
    public override void Enter()
     {
         base.Enter();
         _horizontalInput = 0f;
-        _sm.spriteRenderer.color = Color.red;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    public override void UpdateLogic()
+    [CanBeNull]
+    public override MovementState UpdateLogic()
     {
         base.UpdateLogic();
         _horizontalInput = Input.GetAxis("Horizontal");
         //transition to idle state if input = 0
         if (Mathf.Abs(_horizontalInput) < Mathf.Epsilon)
         {
-            stateMachine.ChangeState(_sm.idleState);
+            return new Idle(gameObject, speed);
         }
+
+        return base.UpdateLogic(); 
     }
 
     public override void UpdatePhysics()
     {
         base.UpdatePhysics();
-        Vector2 vel = _sm.rigidbody2D.velocity;
-        vel.x = _horizontalInput * _sm.speed;
-        _sm.rigidbody2D.velocity = vel;
+        Vector2 vel = _rigidbody2D.velocity;
+        vel.x = _horizontalInput * speed.value;
+        _rigidbody2D.velocity = vel;
     }
 }

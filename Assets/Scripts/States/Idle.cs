@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Idle : BaseState
+public class Idle : MovementState
 {
-    private MovementSM _sm;
     private float _horizontalInput;
 
-    public Idle(MovementSM stateMachine) : base("Idle", stateMachine) {
-        _sm = (MovementSM)stateMachine;
+    public Idle(GameObject gameObject, FloatReference speed) : base(gameObject, speed) {
+        
     }
    public override void Enter()
     {
         base.Enter();
         _horizontalInput = 0f;
-        _sm.spriteRenderer.color = Color.black;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.black;
     }
 
-    public override void UpdateLogic()
+    public override MovementState UpdateLogic()
     {
-        base.UpdateLogic();
         _horizontalInput = Input.GetAxis("Horizontal");
         //transition to moving state if input !=0
         if (Mathf.Abs(_horizontalInput) > Mathf.Epsilon)
         {
-            stateMachine.ChangeState(_sm.movingState);
+            return new Moving(gameObject, speed);
         }
+
+        return base.UpdateLogic();
     }
 }

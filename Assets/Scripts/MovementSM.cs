@@ -2,25 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementSM : StateMachine
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer))]
+
+public class MovementSM : StateMachine<MovementState>
 {
-    [HideInInspector]
-    public Idle idleState;
-    [HideInInspector]
-    public Moving movingState;
 
-    public Rigidbody2D rigidbody2D;
-    public SpriteRenderer spriteRenderer;
+    public FloatReference speed;
 
-    public float speed = 4f;
-
-    private void Awake()
+    protected override MovementState GetInitialState()
     {
-        idleState = new Idle(this);
-        movingState = new Moving(this);
-    }
-    protected override BaseState GetInitialState()
-    {
-        return idleState;
+        return new Idle(gameObject, speed);
     }
 }

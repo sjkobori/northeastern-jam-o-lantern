@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class StateMachine : MonoBehaviour
-{
-    BaseState currentState;
+public abstract class StateMachine<T> : MonoBehaviour where T : IBaseState<T> {
+    T currentState;
 
     // Start is called before the first frame update
     void Start()
@@ -17,18 +16,21 @@ public abstract class StateMachine : MonoBehaviour
         }
     }
 
-    protected abstract BaseState GetInitialState();
+    protected abstract T GetInitialState();
 
     // Update is called once per frame
     void Update()
     {
         if (currentState != null)
         {
-            currentState.UpdateLogic();
+            T newState = currentState.UpdateLogic();
+            if (newState != null) {
+                ChangeState(newState);
+            }
         }
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (currentState != null)
         {
@@ -36,7 +38,7 @@ public abstract class StateMachine : MonoBehaviour
         }
     }
 
-    public void ChangeState(BaseState newState)
+    public void ChangeState(T newState)
     {
         currentState.Exit();
         currentState = newState;
@@ -46,7 +48,7 @@ public abstract class StateMachine : MonoBehaviour
 
     private void OnGUI()
     {
-        string content = currentState == null ? "NO STATE ASSIGNED" : currentState.name;
+        string content = currentState == null ? "NO STATE ASSIGNED" : currentState.GetType().Name;
         GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
     }
 

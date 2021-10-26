@@ -3,46 +3,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class StateMachine<T> : MonoBehaviour where T : IBaseState<T> {
+public abstract class StateMachine<T> : MonoBehaviour where T : class, IBaseState<T> {
     T currentState;
+
+    public T initialState;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentState = GetInitialState();
-        if (currentState != null)
-        {
-            currentState.Enter();
-        }
+        currentState = initialState;
+        currentState?.Enter(gameObject);
     }
-
-    protected abstract T GetInitialState();
 
     // Update is called once per frame
     void Update()
     {
-        if (currentState != null)
-        {
-            T newState = currentState.UpdateLogic();
-            if (newState != null) {
-                ChangeState(newState);
-            }
-        }
+        T newState = currentState?.UpdateLogic(gameObject);
+        if (newState != null) ChangeState(newState);
     }
 
     void FixedUpdate()
     {
-        if (currentState != null)
-        {
-            currentState.UpdatePhysics();
-        }
+        currentState?.UpdatePhysics(gameObject);
     }
 
     public void ChangeState(T newState)
     {
-        currentState.Exit();
+        currentState?.Exit(gameObject);
         currentState = newState;
-        currentState.Enter();
+        currentState?.Enter(gameObject);
 
     }
 

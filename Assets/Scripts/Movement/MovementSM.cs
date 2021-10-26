@@ -8,10 +8,4 @@ using UnityEngine;
 public class MovementSM : StateMachine<MovementState>
 {
 
-    public FloatReference speed;
-
-    protected override MovementState GetInitialState()
-    {
-        return new Idle(gameObject, speed);
-    }
 }

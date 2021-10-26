@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IBaseState<out T> where T : IBaseState<T> {
-    void Enter();
+    void Enter(GameObject gameObject);
 
-    T UpdateLogic();
+    T UpdateLogic(GameObject gameObject);
     
-    void UpdatePhysics();
+    void UpdatePhysics(GameObject gameObject);
     
-    void Exit();
+    void Exit(GameObject gameObject);
 
 }

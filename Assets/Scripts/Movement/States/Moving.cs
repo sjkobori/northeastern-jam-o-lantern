@@ -4,39 +4,41 @@ using JetBrains.Annotations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MovingState", menuName = "ScriptableObjects/MovementStates/Moving", order = 2)]
-public class Moving : MovementState
+public class Moving : AXMoveState
 {
-    private float _horizontalInput;
-    private Rigidbody2D _rigidbody2D;
-    public FloatReference speed;
-    public MovementState idleState;
+    [SerializeField] protected MovementState idleState;
+    [SerializeField] private MovementState jumpingState;
+    [SerializeField] private MovementState freefallState;
+    
+    [SerializeField] private LayerMask groundedLayers;
     
     public override void Enter(GameObject gameObject)
     {
-        base.Enter(gameObject);
         _horizontalInput = 0f;
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-        _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
     }
 
     [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject)
     {
         _horizontalInput = Input.GetAxis("Horizontal");
+        bool _jumping = Input.GetButton("Jump");
+        
+        var groundTest = Physics2D.OverlapBoxAll(new Vector3(0, -0.5f) + gameObject.transform.position, new Vector2(1, 0.1f), 0, groundedLayers).Length > 0;
+
         //transition to idle state if input = 0
+        if (_jumping) {
+            return jumpingState;
+        }
+
+        if (!groundTest) {
+            return freefallState;
+        }
         if (Mathf.Abs(_horizontalInput) < Mathf.Epsilon)
         {
             return idleState;
         }
 
         return base.UpdateLogic(gameObject); 
-    }
-
-    public override void UpdatePhysics(GameObject gameObject)
-    {
-        base.UpdatePhysics(gameObject);
-        Vector2 vel = _rigidbody2D.velocity;
-        vel.x = _horizontalInput * speed.value;
-        _rigidbody2D.velocity = vel;
     }
 }

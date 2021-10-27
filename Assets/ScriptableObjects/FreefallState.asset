@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85ec2f7ff0aed4147bad6f8448506421, type: 3}
-  m_Name: PlayerSpeed
+  m_Script: {fileID: 11500000, guid: 4f9d77c4770e446e9bd4ff2faec6f9dc, type: 3}
+  m_Name: FreefallState
   m_EditorClassIdentifier: 
-  value: 10
+  speed: {fileID: 0}
+  idleState: {fileID: 0}
+  movingState: {fileID: 0}
+  groundCheck: {fileID: 0}
+  groundedLayers:
+    serializedVersion: 2
+    m_Bits: 0

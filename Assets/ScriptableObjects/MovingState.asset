@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598affb64a6c6f145ab40ccf1a933422, type: 3}
   m_Name: MovingState
   m_EditorClassIdentifier: 
-  speed: {fileID: 0}
-  IdleState: {fileID: 0}
+  speed: {fileID: 11400000, guid: 2e21392bb65720f46a03ab0d5777cdfd, type: 2}
+  idleState: {fileID: 11400000, guid: d6484956ea97d9948a23ae806e326949, type: 2}

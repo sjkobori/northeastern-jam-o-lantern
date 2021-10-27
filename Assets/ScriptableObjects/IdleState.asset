@@ -13,3 +13,8 @@ MonoBehaviour:
   m_Name: IdleState
   m_EditorClassIdentifier: 
   movingState: {fileID: 11400000, guid: 989df6ae133773446900b0e4e5729914, type: 2}
+  jumpingState: {fileID: 11400000, guid: 4e5d91499117f294d91da22d4915da0c, type: 2}
+  freefallState: {fileID: 11400000, guid: c1a58686e19df5d438783589d3f91ea3, type: 2}
+  groundedLayers:
+    serializedVersion: 2
+    m_Bits: 128

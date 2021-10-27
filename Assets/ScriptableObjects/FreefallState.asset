@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9d77c4770e446e9bd4ff2faec6f9dc, type: 3}
   m_Name: FreefallState
   m_EditorClassIdentifier: 
-  speed: {fileID: 0}
-  idleState: {fileID: 0}
-  movingState: {fileID: 0}
-  groundCheck: {fileID: 0}
+  speed: {fileID: 11400000, guid: 2e21392bb65720f46a03ab0d5777cdfd, type: 2}
+  idleState: {fileID: 11400000, guid: d6484956ea97d9948a23ae806e326949, type: 2}
+  movingState: {fileID: 11400000, guid: 989df6ae133773446900b0e4e5729914, type: 2}
   groundedLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128

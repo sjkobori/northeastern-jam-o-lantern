@@ -5,24 +5,33 @@ using UnityEngine;
 public class Freefall: AXMoveState {
     [SerializeField] private MovementState idleState;
     [SerializeField] private MovementState movingState;
+    [SerializeField] private MovementState wallSlidingState;
 
-    // [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundedLayers;
-    
+    public override void Enter(GameObject gameObject)
+    {
+        base.Enter(gameObject);
+        gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+    }
+
     [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject)
     {
-        _horizontalInput = Input.GetAxis("Horizontal");
-        var groundTest = Physics2D.OverlapBoxAll(new Vector3(0, -0.5f) + gameObject.transform.position, new Vector2(1, 0.1f), 0, groundedLayers).Length > 0;
+        PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
 
-        if (groundTest) {
+        if (pmc.grounded) {
             //transition to idle state if input = 0
-            if (Mathf.Abs(_horizontalInput) < Mathf.Epsilon)
+            if (Mathf.Abs(pmc.horizontalAxis) < Mathf.Epsilon)
             {
                 return idleState;
             }
 
             return movingState;
+        }
+
+        if (pmc.walled)
+        {
+            
+            return wallSlidingState;
         }
 
         return null;

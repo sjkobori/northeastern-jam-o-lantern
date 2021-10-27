@@ -8,18 +8,18 @@ public class Jumping : AXMoveState {
 
     private float _jumpStart;
     private float maxJumpHold = 0.15f;
-    
-
-    public override void Enter(GameObject gameObject) {
-        Debug.Log("Jumping!");
+   
+    public override void Enter(GameObject gameObject)
+    {
+        base.Enter(gameObject);
         _jumpStart = Time.time;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
     }
 
     [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject) {
-        _horizontalInput = Input.GetAxis("Horizontal");
-        bool _jumping = Input.GetButton("Jump");
-        if (!_jumping || Time.time - _jumpStart >= maxJumpHold) {
+        PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
+        if (!pmc.jump || Time.time - _jumpStart >= maxJumpHold) {
             return freefallState;
         }
 

@@ -5,6 +5,7 @@ public abstract class MovementState : ScriptableState<MovementState> {
     private Vector2 _velocity;
     private float xMaxSpeed = 400;
 
+
     protected MovementState() {
         targetVel = new Vector2();
         _velocity = new Vector2();

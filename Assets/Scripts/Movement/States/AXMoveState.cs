@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
 
 public abstract class AXMoveState: MovementState {
-    protected float _horizontalInput;
-
-    [SerializeField] protected FloatReference speed;
-
     public override void UpdatePhysics(GameObject gameObject)
     {
-        targetVel.x = _horizontalInput * speed.value;
+        PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
+        targetVel.x = pmc.horizontalAxis * pmc.moveSpeed;
         base.UpdatePhysics(gameObject);
     }
 }

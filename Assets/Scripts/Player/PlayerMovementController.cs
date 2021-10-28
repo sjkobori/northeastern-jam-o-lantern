@@ -8,6 +8,12 @@ public class PlayerMovementController : MonoBehaviour
     public Transform wallPos;
     public LayerMask groundLayer;
     public FloatReference initialMoveSpeed;
+    public FloatReference maxMoveSpeed;
+    public FloatReference gravity;
+    public FloatReference jumpGravity;
+    public FloatReference airFriction;
+    public FloatReference groundFriction;
+
     [HideInInspector]
     public float moveSpeed;
     [HideInInspector]

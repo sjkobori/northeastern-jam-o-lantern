@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "IdleState", menuName = "ScriptableObjects/MovementStates/Idle", order = 1)]
-public class Idle : MovementState
+public class Idle : AXMoveState
 {
     //private float _horizontalInput;
     [SerializeField] private MovementState movingState;
@@ -35,5 +35,10 @@ public class Idle : MovementState
         }
 
         return base.UpdateLogic(gameObject);
+    }
+
+    protected override void applyXForces(Rigidbody2D rigidbody, PlayerMovementController pmc)
+    {
+        applyFriction(rigidbody, pmc.groundFriction.value);
     }
 }

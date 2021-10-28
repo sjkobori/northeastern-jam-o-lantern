@@ -35,4 +35,9 @@ public class Moving : AXMoveState
 
         return base.UpdateLogic(gameObject); 
     }
+
+    protected override void applyXForces(Rigidbody2D rigidbody, PlayerMovementController pmc)
+    {
+        applyFriction(rigidbody, pmc.groundFriction.value);
+    }
 }

@@ -165,6 +165,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   initialMoveSpeed: {fileID: 11400000, guid: 2e21392bb65720f46a03ab0d5777cdfd, type: 2}
+  maxMoveSpeed: {fileID: 11400000, guid: cf52c1baa83a8c74fae25d6cccfaf777, type: 2}
+  gravity: {fileID: 11400000, guid: cbacc1f924571c64d8c8106a13f3107f, type: 2}
+  jumpGravity: {fileID: 11400000, guid: 9173148f240ae284b89f81c4eccc2b0b, type: 2}
+  airFriction: {fileID: 11400000, guid: bacd3c1194974844ca93191ac3c4447c, type: 2}
+  groundFriction: {fileID: 11400000, guid: 283ac72f2dc305b4684781c2d269cdf4, type: 2}
   moveSpeed: 0
   horizontalAxis: 0
   verticalAxis: 0

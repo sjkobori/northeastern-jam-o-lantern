@@ -39,6 +39,6 @@ public class Idle : AXMoveState
 
     protected override void applyXForces(Rigidbody2D rigidbody, PlayerMovementController pmc)
     {
-        applyFriction(rigidbody, pmc.groundFriction.value);
+        applyFriction(rigidbody, pmc, pmc.groundFriction.value);
     }
 }

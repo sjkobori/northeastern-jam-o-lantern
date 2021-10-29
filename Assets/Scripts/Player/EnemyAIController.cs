@@ -8,10 +8,12 @@ public class EnemyAIController : MonoBehaviour
     public Transform wallPos;
     public LayerMask groundLayer;
     public EnemyStats stats;
-
+    public FloatReference gravity;
 
     [HideInInspector]
     public float moveSpeed;
+    [HideInInspector]
+    public float currentHealth;
     [HideInInspector]
     public float horizontalAxis;
     [HideInInspector]
@@ -44,7 +46,7 @@ public class EnemyAIController : MonoBehaviour
         verticalAxis = Input.GetAxis("Vertical");
         jump = Input.GetButton("Jump");
         */
-        grounded = Physics2D.OverlapBoxAll(groundPos.position, new Vector2(.5f, 0.1f), 0, groundLayer).Length > 0;
+        grounded = Physics2D.OverlapBoxAll(groundPos.position, new Vector2(.5f*transform.localScale.x, 0.1f * transform.localScale.y), 0, groundLayer).Length > 0;
         var results = Physics2D.OverlapBoxAll(wallPos.position, new Vector2(1.1f, .5f), 0, groundLayer);
         walled = results.Length > 0;
         if (walled)
@@ -60,10 +62,7 @@ public class EnemyAIController : MonoBehaviour
             {
                 wallSideRight = true;
             }
-        }
-        
-        
-        
+        } 
        
     }
 

@@ -35,7 +35,7 @@ public abstract class MovementState : ScriptableState<MovementState> {
 
     protected virtual void applyXForces(Rigidbody2D rigidbody, PlayerMovementController pmc)
     {
-        applyFriction(rigidbody, pmc.airFriction.value);
+        applyFriction(rigidbody, pmc, pmc.airFriction.value);
     }
 
     protected virtual void applyYForces(Rigidbody2D rigidbody, PlayerMovementController pmc)
@@ -43,15 +43,17 @@ public abstract class MovementState : ScriptableState<MovementState> {
         rigidbody.AddForce(Vector2.down * pmc.gravity.value);
     }
 
-    protected void applyFriction(Rigidbody2D rigidbody, float frictionValue)
+    protected void applyFriction(Rigidbody2D rigidbody, PlayerMovementController pmc, float frictionValue)
     {
+        
         if (rigidbody.velocity.x > Mathf.Epsilon)
         {
-            rigidbody.AddForce(Vector2.left * frictionValue);
+            rigidbody.AddForce(Vector2.left * (frictionValue + Mathf.Sqrt(Mathf.Abs(rigidbody.velocity.x))));
         }
         else if (rigidbody.velocity.x < Mathf.Epsilon)
         {
-            rigidbody.AddForce(Vector2.right * frictionValue);
+            rigidbody.AddForce(Vector2.right * (frictionValue + Mathf.Sqrt(Mathf.Abs(rigidbody.velocity.x))));
         }
+        
     }
 }

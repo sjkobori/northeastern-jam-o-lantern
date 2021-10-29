@@ -15,6 +15,9 @@ public class WallJumping : MovementState
         base.Enter(gameObject);
         _jumpStart = Time.time;
         gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
+        Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x + 20, rigidbody2D.velocity.y + 10);
+        
     }
 
     [CanBeNull]

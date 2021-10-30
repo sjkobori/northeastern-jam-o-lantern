@@ -41,4 +41,10 @@ public class WallSliding : AXMoveState
 
         return null;
     }
+
+    protected override float getVerticalCap(PlayerMovementController pmc)
+    {
+
+        return pmc.wallSlideSpeedRatio.value * base.getVerticalCap(pmc);
+    }
 }

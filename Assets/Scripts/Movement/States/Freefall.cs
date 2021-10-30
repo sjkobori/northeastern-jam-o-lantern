@@ -6,18 +6,24 @@ public class Freefall: AXMoveState {
     [SerializeField] private MovementState idleState;
     [SerializeField] private MovementState movingState;
     [SerializeField] private MovementState wallSlidingState;
+    private bool _preserveXMoveSpeed;
 
     public override void Enter(GameObject gameObject)
     {
         base.Enter(gameObject);
         gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+        
+        _preserveXMoveSpeed = true;
     }
 
     [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject)
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
-
+        if (Mathf.Abs(pmc.horizontalAxis) > Mathf.Epsilon)
+        {
+            _preserveXMoveSpeed = false;
+        }
         if (pmc.grounded) {
             //transition to idle state if input = 0
             if (Mathf.Abs(pmc.horizontalAxis) < Mathf.Epsilon)
@@ -36,4 +42,18 @@ public class Freefall: AXMoveState {
 
         return null;
     }
+
+    protected override float getXMoveSpeed(PlayerMovementController pmc, Rigidbody2D rigidbody)
+    {
+        if (_preserveXMoveSpeed)
+        {
+            return rigidbody.velocity.x;
+        }else
+        {
+            return base.getXMoveSpeed(pmc, rigidbody);
+        }
+       
+    }
+
+
 }

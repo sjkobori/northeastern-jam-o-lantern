@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f9d77c4770e446e9bd4ff2faec6f9dc, type: 3}
+  m_Name: FreefallState
+  m_EditorClassIdentifier: 
+  idleState: {fileID: 11400000, guid: d6484956ea97d9948a23ae806e326949, type: 2}
+  movingState: {fileID: 11400000, guid: 989df6ae133773446900b0e4e5729914, type: 2}
+  wallSlidingState: {fileID: 11400000, guid: 535304fe4e53db5438c18399783c907e, type: 2}

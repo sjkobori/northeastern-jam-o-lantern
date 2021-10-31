@@ -7,15 +7,18 @@ public class PlayerMovementController : MonoBehaviour
     public Transform groundPos;
     public Transform wallPos;
     public LayerMask groundLayer;
-    public FloatReference initialMoveSpeed;
-    public FloatReference maxMoveSpeed;
+
+    public FloatReference groundMoveSpeed;
+    public FloatReference airMoveSpeed;
+    public FloatReference jumpSpeed;
+
+    public FloatReference maxHorizontalSpeed;
+    public FloatReference maxVerticalSpeed;
+    public FloatReference wallSlideSpeedRatio;
+
     public FloatReference gravity;
     public FloatReference jumpGravity;
-    public FloatReference airFriction;
-    public FloatReference groundFriction;
 
-    [HideInInspector]
-    public float moveSpeed;
     [HideInInspector]
     public float horizontalAxis;
     [HideInInspector]
@@ -31,14 +34,6 @@ public class PlayerMovementController : MonoBehaviour
     [HideInInspector]
     public bool wallSideRight;
 
-    //ground friction / movespeed
-    //air friction / movespeed
-
-
-    private void Awake()
-    {
-        moveSpeed = initialMoveSpeed.value;
-    }
 
     // Update is called once per frame
     void Update()

@@ -13,12 +13,13 @@ public class Jumping : AXMoveState {
 
     public override void Enter(GameObject gameObject)
     {
+        PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         base.Enter(gameObject);
         _jumpTime = 0;
         gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
 
         Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y + 10);
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, pmc.jumpSpeed.value);
     }
 
     [CanBeNull]
@@ -33,15 +34,8 @@ public class Jumping : AXMoveState {
 
         return null;
     }
-    
-    public override void UpdatePhysics(GameObject gameObject) {
-        PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
- 
-        //targetVel.y = 10;
-        base.UpdatePhysics(gameObject);
-    }
 
-    protected override void applyYForces(Rigidbody2D rigidbody, PlayerMovementController pmc)
+    protected override void applyGravity(Rigidbody2D rigidbody, PlayerMovementController pmc)
     {
         rigidbody.AddForce(Vector2.down * pmc.jumpGravity.value);
     }

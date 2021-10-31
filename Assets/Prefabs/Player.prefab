@@ -102,12 +102,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 0
+  m_Material: {fileID: 6200000, guid: ba7693555bbead74d8d049d91e5bbd1a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!61 &3732571166802727428
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164,18 +164,21 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  initialMoveSpeed: {fileID: 11400000, guid: 2e21392bb65720f46a03ab0d5777cdfd, type: 2}
-  maxMoveSpeed: {fileID: 11400000, guid: cf52c1baa83a8c74fae25d6cccfaf777, type: 2}
+  groundMoveSpeed: {fileID: 11400000, guid: 2e21392bb65720f46a03ab0d5777cdfd, type: 2}
+  airMoveSpeed: {fileID: 11400000, guid: 9ff350d958d2351499023063203dcbba, type: 2}
+  jumpSpeed: {fileID: 11400000, guid: 510a3ce5fcde3e84a995952cdb86b369, type: 2}
+  maxHorizontalSpeed: {fileID: 11400000, guid: cf52c1baa83a8c74fae25d6cccfaf777, type: 2}
+  maxVerticalSpeed: {fileID: 11400000, guid: 419cc462d4982ea4d966d15f77d5a093, type: 2}
+  wallSlideSpeedRatio: {fileID: 11400000, guid: 62af90f847a3c6a438e45ad3b6e52299, type: 2}
   gravity: {fileID: 11400000, guid: cbacc1f924571c64d8c8106a13f3107f, type: 2}
   jumpGravity: {fileID: 11400000, guid: 9173148f240ae284b89f81c4eccc2b0b, type: 2}
-  airFriction: {fileID: 11400000, guid: bacd3c1194974844ca93191ac3c4447c, type: 2}
-  groundFriction: {fileID: 11400000, guid: 283ac72f2dc305b4684781c2d269cdf4, type: 2}
-  moveSpeed: 0
   horizontalAxis: 0
   verticalAxis: 0
   jump: 0
   grounded: 0
   walled: 0
+  wallSideLeft: 0
+  wallSideRight: 0
 --- !u!1 &3732571167700767227
 GameObject:
   m_ObjectHideFlags: 0

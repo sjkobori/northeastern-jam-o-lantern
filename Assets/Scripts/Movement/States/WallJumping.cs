@@ -20,8 +20,9 @@ public class WallJumping : MovementState
         gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
         Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
-        int jumpX = pmc.wallSideLeft ? 10 : -10;
-        rigidbody2D.velocity = new Vector2( jumpX,  10);
+        float jumpX = (pmc.wallSideLeft ? 1 : -1) * pmc.groundMoveSpeed.value;
+        
+        rigidbody2D.velocity = new Vector2( jumpX,  pmc.jumpSpeed.value);
         
     }
 
@@ -41,10 +42,8 @@ public class WallJumping : MovementState
         return null;
     }
 
-    public override void UpdatePhysics(GameObject gameObject)
+    protected override void applyGravity(Rigidbody2D rigidbody, PlayerMovementController pmc)
     {
-        targetVel.y = 10;
-        targetVel.x = 100;
-        base.UpdatePhysics(gameObject);
+        rigidbody.AddForce(Vector2.down * pmc.jumpGravity.value);
     }
 }

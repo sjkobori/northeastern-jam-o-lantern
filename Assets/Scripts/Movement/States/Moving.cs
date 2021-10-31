@@ -13,11 +13,6 @@ public class Moving : AXMoveState
     public override void Enter(GameObject gameObject)
     {
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-        PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
-
-       // float direction = Mathf.Sign(pmc.horizontalAxis);
-        //Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-        //rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, rigidbody2D.velocity.y + 10);
     }
 
     [CanBeNull]
@@ -41,23 +36,5 @@ public class Moving : AXMoveState
         return base.UpdateLogic(gameObject); 
     }
 
-    protected override void applyXForces(Rigidbody2D rigidbody, PlayerMovementController pmc)
-    {
-        float groundFriction = pmc.groundFriction.value;
-        float directionTryingToMove = Mathf.Sign(pmc.horizontalAxis);
-        float directionMoving = Mathf.Sign(rigidbody.velocity.x);
-        if (Mathf.Abs(pmc.horizontalAxis) < Mathf.Epsilon) //not holding stick
-        {
-            
-        }
-        else if (Mathf.Abs(directionTryingToMove - directionMoving) < Mathf.Epsilon)
-        {
-            groundFriction = 0;
-        }
-        else
-        {
-            groundFriction *= 2;
-        }
-        applyFriction(rigidbody, pmc, pmc.groundFriction.value);
-    }
+
 }

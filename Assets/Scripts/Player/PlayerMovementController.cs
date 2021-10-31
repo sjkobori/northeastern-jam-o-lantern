@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     public Transform groundPos;
-    public Transform wallPos;
+    public Transform leftWallPos;
+    public Transform rightWallPos;
     public LayerMask groundLayer;
 
     public FloatReference groundMoveSpeed;
@@ -38,28 +39,15 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         horizontalAxis = Input.GetAxis("Horizontal");
         verticalAxis = Input.GetAxis("Vertical");
         jump = Input.GetButton("Jump");
-        
+
         grounded = Physics2D.OverlapBoxAll(groundPos.position, new Vector2(.5f, 0.1f), 0, groundLayer).Length > 0;
-        var results = Physics2D.OverlapBoxAll(wallPos.position, new Vector2(1.1f, .5f), 0, groundLayer);
-        walled = results.Length > 0;
-        if (walled)
-        {
-            wallSideLeft = false;
-            wallSideRight = false;
-            Collider2D wall = results[0];
-            if (wall.transform.position.x < gameObject.transform.position.x)
-            {
-                wallSideLeft = true;
-            }
-            else 
-            {
-                wallSideRight = true;
-            }
-        }
+        wallSideLeft = Physics2D.OverlapBoxAll(leftWallPos.position, new Vector2(.1f, .5f), 0, groundLayer).Length > 0;
+        wallSideRight = Physics2D.OverlapBoxAll(rightWallPos.position, new Vector2(.1f, .5f), 0, groundLayer).Length > 0;
+        walled = wallSideLeft || wallSideRight;
         
         
         

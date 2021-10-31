@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365bf1b35a94f7e4ab17697f9b10d4cd, type: 3}
   m_Name: HopperStats
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 50
   moveSpeed: 0

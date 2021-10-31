@@ -32,10 +32,10 @@ public class WallJumping : MovementState
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         pmc.horizontalAxis = 0;
         _jumpTime += Time.deltaTime;
-        Debug.Log("jumptime is:" + _jumpTime);
+        //Debug.Log("jumptime is:" + _jumpTime);
         if ((!pmc.jump && _jumpTime > minJumpTime) || _jumpTime >= maxJumpTime)
         {
-            Debug.Log("Going to freefall, reache max hold time:" + maxJumpTime);
+            //Debug.Log("Going to freefall, reache max hold time:" + maxJumpTime);
             return freefallState;
         }
 

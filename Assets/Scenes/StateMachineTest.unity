@@ -1265,22 +1265,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3732571166802727429, guid: d6d7ea45746fb73479c63a0735e50c2a, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: ba7693555bbead74d8d049d91e5bbd1a, type: 2}
-    - target: {fileID: 3732571166802727429, guid: d6d7ea45746fb73479c63a0735e50c2a, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3732571166802727429, guid: d6d7ea45746fb73479c63a0735e50c2a, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3732571166802727429, guid: d6d7ea45746fb73479c63a0735e50c2a, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3732571166802727431, guid: d6d7ea45746fb73479c63a0735e50c2a, type: 3}
       propertyPath: m_Name
       value: Player

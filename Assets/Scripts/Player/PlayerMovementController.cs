@@ -35,12 +35,25 @@ public class PlayerMovementController : MonoBehaviour
     [HideInInspector]
     public bool wallSideRight;
 
+    float directionFacing;
 
+    private void Awake()
+    {
+        directionFacing = 1;
+    }
     // Update is called once per frame
     void Update()
     {
 
         horizontalAxis = Input.GetAxis("Horizontal");
+
+        if (Mathf.Abs(horizontalAxis) > Mathf.Epsilon)
+        {
+            var localScale = transform.localScale;
+            localScale.x = Mathf.Abs(localScale.x) * Mathf.Sign(horizontalAxis);
+            transform.localScale = localScale;
+        }
+
         verticalAxis = Input.GetAxis("Vertical");
         jump = Input.GetButton("Jump");
 
@@ -49,8 +62,7 @@ public class PlayerMovementController : MonoBehaviour
         wallSideRight = Physics2D.OverlapBoxAll(rightWallPos.position, new Vector2(.1f, .5f), 0, groundLayer).Length > 0;
         walled = wallSideLeft || wallSideRight;
         
-        
-        
+           
        
     }
 

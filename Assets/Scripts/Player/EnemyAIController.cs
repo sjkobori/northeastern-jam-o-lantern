@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class EnemyAIController : MonoBehaviour
     public LayerMask groundLayer;
     public EnemyStats stats;
     public FloatReference gravity;
+    public Sprite deathSprite;
 
     [HideInInspector]
     public float moveSpeed;
@@ -36,11 +38,20 @@ public class EnemyAIController : MonoBehaviour
     private void Awake()
     {
         moveSpeed = stats.moveSpeed;
+        currentHealth = stats.maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (currentHealth <=0)
+        {
+            Debug.Log(gameObject.name + " just died :(");
+            //die and play animation
+            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = deathSprite;
+            //currentSprite.sprite = deathSprite;
+            Destroy(gameObject, .5f);
+        }
         /*
         horizontalAxis = Input.GetAxis("Horizontal");
         verticalAxis = Input.GetAxis("Vertical");
@@ -66,5 +77,10 @@ public class EnemyAIController : MonoBehaviour
        
     }
 
-   
+    internal void dealDamage(int damage)
+    {
+        Debug.Log(gameObject.name + " got hit for " + damage + " damage!");
+        currentHealth -= damage;
+        Debug.Log(gameObject.name + " is at " + currentHealth + " health!");
+    }
 }

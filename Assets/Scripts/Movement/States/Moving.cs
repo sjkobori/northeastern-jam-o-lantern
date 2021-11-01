@@ -12,23 +12,29 @@ public class Moving : AXMoveState
     
     public override void Enter(GameObject gameObject)
     {
-        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        // gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        gameObject.GetComponentInChildren<Animator>().SetBool("Moving", true);
+        base.Enter(gameObject);
+    }
+
+    public override void Exit(GameObject gameObject) {
+        gameObject.GetComponentInChildren<Animator>().SetBool("Moving", false);
+        base.Exit(gameObject);
     }
 
     [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject)
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
-        Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         //transition to idle state if input = 0
-        if (pmc.jump) {
+        if (pmc.jump.Consume()) {
             return jumpingState;
         }
 
         if (!pmc.grounded) {
             return freefallState;
         }
-        if (Mathf.Abs(rigidbody2D.velocity.x) < Mathf.Epsilon)
+        if (Mathf.Abs(pmc.horizontalAxis) < Mathf.Epsilon)
         {
             return idleState;
         }

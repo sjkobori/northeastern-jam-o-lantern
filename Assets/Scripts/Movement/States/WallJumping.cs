@@ -15,15 +15,17 @@ public class WallJumping : MovementState
 
     public override void Enter(GameObject gameObject)
     {
-        base.Enter(gameObject);
         _jumpTime = 0;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
+        // gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
         Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         float jumpX = (pmc.wallSideLeft ? 1 : -1) * pmc.groundMoveSpeed.value;
         
         rigidbody2D.velocity = new Vector2( jumpX,  pmc.jumpSpeed.value);
         
+        gameObject.GetComponentInChildren<Animator>().SetTrigger("Jump");
+        gameObject.GetComponentInChildren<Animator>().SetBool("Grounded", false);
+        base.Enter(gameObject);
     }
 
     [CanBeNull]
@@ -32,10 +34,8 @@ public class WallJumping : MovementState
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         pmc.horizontalAxis = 0;
         _jumpTime += Time.deltaTime;
-        Debug.Log("jumptime is:" + _jumpTime);
-        if ((!pmc.jump && _jumpTime > minJumpTime) || _jumpTime >= maxJumpTime)
+        if ((!pmc.jumpHeld && _jumpTime > minJumpTime) || _jumpTime >= maxJumpTime)
         {
-            Debug.Log("Going to freefall, reache max hold time:" + maxJumpTime);
             return freefallState;
         }
 

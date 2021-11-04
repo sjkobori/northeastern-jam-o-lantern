@@ -26,9 +26,9 @@ public class Jumping : AXMoveState {
     public override MovementState UpdateLogic(GameObject gameObject) {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         _jumpTime += Time.deltaTime;
-        Debug.Log("jumptime is:" + _jumpTime);
+        //Debug.Log("jumptime is:" + _jumpTime);
         if ((!pmc.jump && _jumpTime > minJumpTime) || _jumpTime >= maxJumpTime) {
-            Debug.Log("Going to freefall, reache max hold time:" + maxJumpTime);
+            //Debug.Log("Going to freefall, reache max hold time:" + maxJumpTime);
             return freefallState;
         }
 

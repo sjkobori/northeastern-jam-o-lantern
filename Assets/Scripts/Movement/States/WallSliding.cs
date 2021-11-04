@@ -8,11 +8,6 @@ public class WallSliding : AXMoveState
     [SerializeField] private MovementState movingState;
     [SerializeField] private MovementState freefallState;
     [SerializeField] private MovementState walljumpState;
-    public override void Enter(GameObject gameObject)
-    {
-        base.Enter(gameObject);
-        gameObject.GetComponent<SpriteRenderer>().color = Color.green;
-    }
 
     [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject)
@@ -32,7 +27,7 @@ public class WallSliding : AXMoveState
         {
             return freefallState;
         }
-        if (pmc.jump)
+        if (pmc.jump.Consume())
         {
             return walljumpState;
         }
@@ -40,6 +35,19 @@ public class WallSliding : AXMoveState
         
 
         return null;
+    }
+
+    public override void UpdatePhysics(GameObject gameObject) {
+        base.UpdatePhysics(gameObject);
+        
+        PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
+        if (!pmc.wallSideLeft || !pmc.wallSideRight) {
+            if (pmc.wallSideLeft) {
+                pmc.Face(Vector2.right);
+            } else if (pmc.wallSideRight) {
+                pmc.Face(Vector2.left);
+            }
+        }
     }
 
     protected override float getVerticalCap(PlayerMovementController pmc)

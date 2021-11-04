@@ -12,9 +12,9 @@ public abstract class EnemyState : ScriptableState<EnemyState> {
     
     public override void UpdatePhysics(GameObject gameObject) {
         Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-        EnemyAIController pmc = gameObject.GetComponent<EnemyAIController>();
+        EnemyAIController eac = gameObject.GetComponent<EnemyAIController>();
 
-        applyForces(rigidbody2D, pmc);
+        applyForces(rigidbody2D, eac);
         /*
             rigidbody2D.velocity = new Vector2(
             Mathf.SmoothDamp(rigidbody2D.velocity.x, targetVel.x, ref _velocity.x, 0.05f, xMaxSpeed),
@@ -26,13 +26,48 @@ public abstract class EnemyState : ScriptableState<EnemyState> {
        // targetVel = new Vector2(0, rigidbody2D.velocity.y);
     }
 
-    private void applyForces(Rigidbody2D rigidbody, EnemyAIController pmc)
+    private void applyForces(Rigidbody2D rigidbody, EnemyAIController eac)
     {
-        applyYForces(rigidbody, pmc);
+        applyYForces(rigidbody, eac);
     }
 
-    protected virtual void applyYForces(Rigidbody2D rigidbody, EnemyAIController pmc)
+    protected virtual void applyYForces(Rigidbody2D rigidbody, EnemyAIController eac)
     {
-        rigidbody.AddForce(Vector2.down * pmc.gravity.value);
+        rigidbody.AddForce(Vector2.down * eac.gravity.value);
+    }
+
+    protected float moveRLTowards(Vector2 moveTo, Vector2 moveFrom, GameObject gameObject, float moveSpeed)
+    {
+        EnemyAIController eac = gameObject.GetComponent<EnemyAIController>();
+        if (moveTo.x > moveFrom.x)
+        {
+            eac.transform.localScale = new Vector2(Mathf.Abs(eac.transform.localScale.x), eac.transform.localScale.y);
+            return moveFrom.x + moveSpeed * Time.deltaTime;
+        } else if (moveTo.x + 0.5 < moveFrom.x)
+        {
+            eac.transform.localScale = new Vector2(-Mathf.Abs(eac.transform.localScale.x), eac.transform.localScale.y);
+            return moveFrom.x - moveSpeed * Time.deltaTime;
+        }
+        else
+        {
+            return moveFrom.x;
+        }
+    }
+
+    protected float moveUDTowards(Vector2 moveTo, Vector2 moveFrom, GameObject gameObject, float moveSpeed, float offset)
+    {
+        EnemyAIController eac = gameObject.GetComponent<EnemyAIController>();
+        if (moveFrom.y < moveTo.y + offset)
+        {
+            return moveFrom.y + moveSpeed * Time.deltaTime;
+        }
+        else if (moveFrom.y < moveTo.y + offset + 0.1)
+        {
+            return moveFrom.y;
+        }
+        else
+        {
+            return moveFrom.y - moveSpeed * Time.deltaTime;
+        }
     }
 }

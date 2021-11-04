@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e424d9086dc4da546acd1608ae0005ac, type: 3}
   m_Name: JumpState
   m_EditorClassIdentifier: 
-  jumpState: {fileID: 11400000}
+  chaseStateSpider: {fileID: 11400000, guid: 4f289734407592248b00f0c47a492dcb, type: 2}
+  climbWallState: {fileID: 11400000, guid: 4affd2babb14cc341863169b9e2ea5f7, type: 2}

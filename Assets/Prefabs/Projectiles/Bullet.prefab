@@ -47,10 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitList:
-  - serializedVersion: 2
-    m_Bits: 128
-  - serializedVersion: 2
-    m_Bits: 256
+    serializedVersion: 2
+    m_Bits: 384
   speed: 10
   damage: 10
   dir: {x: 0, y: 0}

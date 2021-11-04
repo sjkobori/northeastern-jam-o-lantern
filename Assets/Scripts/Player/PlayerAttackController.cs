@@ -37,7 +37,7 @@ public class PlayerAttackController : MonoBehaviour
     IEnumerator meleeStrike()
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
-        float directionFacing = Mathf.Sign(transform.localScale.x);
+        float directionFacing = Mathf.Sign(pmc.facing.x);
 
 
         List<EnemyAIController> hitList = new List<EnemyAIController>();
@@ -67,7 +67,7 @@ public class PlayerAttackController : MonoBehaviour
     IEnumerator rangedShot()
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
-        float directionFacing = Mathf.Sign(transform.localScale.x);
+        float directionFacing = Mathf.Sign(pmc.facing.x);
 
         ProjectileController bulletController = Instantiate(bullet, new Vector3(directionFacing,0,0) + transform.position, Quaternion.identity).GetComponent<ProjectileController>();
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    public LayerMask[] hitList;
+    public LayerMask hitList;
     public float speed;
     public int damage;
     public Vector2 dir;
@@ -22,21 +22,20 @@ public class ProjectileController : MonoBehaviour
         rigidbody.velocity = dir * speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    private void OnTriggerEnter2D(Collider2D collision) {
+        // Return if we didn't hit anything we would have collided with
+        if (hitList != 0 && (hitList & (1 << collision.gameObject.layer)) == 0) return;
 
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            EnemyAIController ec = collision.gameObject.GetComponent<EnemyAIController>();
-            ec.dealDamage(damage);
-        }
+        EnemyAIController ec;
+        collision.gameObject.TryGetComponent(out ec);
+        if(ec) ec.dealDamage(damage);
 
-              //Play animation
-            Debug.Log(collision.gameObject.name + " got hit by " + gameObject.name);
-            //die and play animation
-            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = explosionSprite;
-            //currentSprite.sprite = deathSprite;
-            Destroy(gameObject, .5f);
+        //Play animation
+        Debug.Log(collision.gameObject.name + " got hit by " + gameObject.name);
+        //die and play animation
+        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = explosionSprite;
+        //currentSprite.sprite = deathSprite;
+        Destroy(gameObject, .5f);
         
     }
 }

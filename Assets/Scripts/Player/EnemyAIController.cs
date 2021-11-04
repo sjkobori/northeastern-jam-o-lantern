@@ -35,7 +35,7 @@ public class EnemyAIController : MonoBehaviour
     public bool wallSideRight;
     [HideInInspector]
     public bool inAggro;
-    [HideInInspector]
+ 
     public Transform playerPos;
     [HideInInspector]
     public bool bottomRightEmpty;

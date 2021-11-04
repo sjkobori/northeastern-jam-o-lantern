@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &435630183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 435630184}
+  m_Layer: 0
+  m_Name: leftBottomEmpty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &435630184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435630183}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.7, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3732571166802727435}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1908793442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1908793443}
+  m_Layer: 0
+  m_Name: rightBottomEmpty
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1908793443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1908793442}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3732571166802727435}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &813314953467313723
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +141,8 @@ Transform:
   - {fileID: 3732571167700767224}
   - {fileID: 738997584592134762}
   - {fileID: 8016117493205203418}
+  - {fileID: 1908793443}
+  - {fileID: 435630184}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,11 +207,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundPos: {fileID: 3732571167700767224}
   wallPos: {fileID: 3732571166802727435}
+  bottomRight: {fileID: 1908793443}
+  bottomLeft: {fileID: 435630184}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   stats: {fileID: 11400000, guid: bc795c49087afe745bbb01ac354f90ad, type: 2}
   gravity: {fileID: 11400000, guid: cbacc1f924571c64d8c8106a13f3107f, type: 2}
+  deathSprite: {fileID: 0}
   patrolArea: {fileID: 0}
   moveSpeed: 0
   currentHealth: 0
@@ -162,6 +227,8 @@ MonoBehaviour:
   wallSideRight: 0
   inAggro: 0
   playerPos: {fileID: 0}
+  bottomRightEmpty: 0
+  bottomLeftEmpty: 0
 --- !u!114 &7328003821474867619
 MonoBehaviour:
   m_ObjectHideFlags: 0

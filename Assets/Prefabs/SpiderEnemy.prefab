@@ -184,6 +184,7 @@ MonoBehaviour:
     m_Bits: 128
   stats: {fileID: 11400000, guid: bc795c49087afe745bbb01ac354f90ad, type: 2}
   gravity: {fileID: 11400000, guid: cbacc1f924571c64d8c8106a13f3107f, type: 2}
+  deathSprite: {fileID: 0}
   patrolArea: {fileID: 0}
   moveSpeed: 0
   currentHealth: 0

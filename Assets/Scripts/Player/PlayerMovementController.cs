@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,8 @@ public class PlayerMovementController : MonoBehaviour
     [HideInInspector]
     public float verticalAxis;
     [HideInInspector]
-    public bool jump;
+    public bool jumpHeld;
+    public Trigger jump = new Trigger();
     [HideInInspector]
     public bool grounded;
     [HideInInspector]
@@ -34,37 +36,47 @@ public class PlayerMovementController : MonoBehaviour
     public bool wallSideLeft;
     [HideInInspector]
     public bool wallSideRight;
+    [HideInInspector]
+    public Vector2 facing;
 
-    float directionFacing;
+    private SpriteRenderer spriteRenderer;
 
-    private void Awake()
-    {
-        directionFacing = 1;
+    private void Awake() {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        Face(Vector2.right);
     }
+
     // Update is called once per frame
     void Update()
     {
 
         horizontalAxis = Input.GetAxis("Horizontal");
 
-        if (Mathf.Abs(horizontalAxis) > Mathf.Epsilon)
-        {
-            var localScale = transform.localScale;
-            localScale.x = Mathf.Abs(localScale.x) * Mathf.Sign(horizontalAxis);
-            transform.localScale = localScale;
-        }
-
         verticalAxis = Input.GetAxis("Vertical");
-        jump = Input.GetButton("Jump");
+
+        jump.Set(Input.GetButtonDown("Jump"));
+        jumpHeld = Input.GetButton("Jump");
+
+        if (Mathf.Abs(horizontalAxis) > Mathf.Epsilon) {
+            facing = Vector2.right * Mathf.Sign(horizontalAxis);
+        }
 
         grounded = Physics2D.OverlapBoxAll(groundPos.position, new Vector2(.5f, 0.1f), 0, groundLayer).Length > 0;
         wallSideLeft = Physics2D.OverlapBoxAll(leftWallPos.position, new Vector2(.1f, .5f), 0, groundLayer).Length > 0;
         wallSideRight = Physics2D.OverlapBoxAll(rightWallPos.position, new Vector2(.1f, .5f), 0, groundLayer).Length > 0;
         walled = wallSideLeft || wallSideRight;
-        
-           
-       
     }
 
-   
+    public void Face(Vector2 direction) {
+        facing = direction;
+
+        Transform tf = spriteRenderer.transform;
+
+        var scale = tf.localScale;
+        tf.localScale = new Vector3(
+            Mathf.Sign(facing.x) * Mathf.Abs(scale.x),
+            Mathf.Sign(facing.y) * Mathf.Abs(scale.y),
+            scale.z
+        );
+    }
 }

@@ -11,15 +11,22 @@ public class Freefall: AXMoveState {
     public override void Enter(GameObject gameObject)
     {
         base.Enter(gameObject);
-        gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+        // gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+        gameObject.GetComponentInChildren<Animator>().SetBool("Grounded", false);
         
         _preserveXMoveSpeed = true;
+    }
+
+    public override void Exit(GameObject gameObject) {
+        gameObject.GetComponentInChildren<Animator>().SetBool("Grounded", true);
+        base.Exit(gameObject);
     }
 
     [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject)
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
+        pmc.jump.Consume();
         if (Mathf.Abs(pmc.horizontalAxis) > Mathf.Epsilon)
         {
             _preserveXMoveSpeed = false;

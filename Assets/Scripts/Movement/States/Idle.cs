@@ -10,18 +10,12 @@ public class Idle : AXMoveState
     [SerializeField] private MovementState jumpingState;
     [SerializeField] private MovementState freefallState;
 
-   public override void Enter(GameObject gameObject)
-    {
-        base.Enter(gameObject);
-        gameObject.GetComponent<SpriteRenderer>().color = Color.black;
-    }
-
     public override MovementState UpdateLogic(GameObject gameObject)
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
 
         //transition to idle state if input = 0
-        if (pmc.jump) {
+        if (pmc.jump.Consume()) {
             return jumpingState;
         }
 

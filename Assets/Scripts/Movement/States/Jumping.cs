@@ -14,21 +14,21 @@ public class Jumping : AXMoveState {
     public override void Enter(GameObject gameObject)
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
-        base.Enter(gameObject);
         _jumpTime = 0;
-        gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
+        // gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
 
         Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, pmc.jumpSpeed.value);
+        gameObject.GetComponentInChildren<Animator>().SetTrigger("Jump");
+        gameObject.GetComponentInChildren<Animator>().SetBool("Grounded", false);
+        base.Enter(gameObject);
     }
 
     [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject) {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         _jumpTime += Time.deltaTime;
-        //Debug.Log("jumptime is:" + _jumpTime);
-        if ((!pmc.jump && _jumpTime > minJumpTime) || _jumpTime >= maxJumpTime) {
-            //Debug.Log("Going to freefall, reache max hold time:" + maxJumpTime);
+        if ((!pmc.jumpHeld && _jumpTime > minJumpTime) || _jumpTime >= maxJumpTime) {
             return freefallState;
         }
 

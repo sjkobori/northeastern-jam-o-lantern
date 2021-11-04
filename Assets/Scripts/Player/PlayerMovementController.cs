@@ -51,15 +51,9 @@ public class PlayerMovementController : MonoBehaviour
     {
 
         horizontalAxis = Input.GetAxis("Horizontal");
-
         verticalAxis = Input.GetAxis("Vertical");
-
         jump.Set(Input.GetButtonDown("Jump"));
         jumpHeld = Input.GetButton("Jump");
-
-        if (Mathf.Abs(horizontalAxis) > Mathf.Epsilon) {
-            facing = Vector2.right * Mathf.Sign(horizontalAxis);
-        }
 
         grounded = Physics2D.OverlapBoxAll(groundPos.position, new Vector2(.5f, 0.1f), 0, groundLayer).Length > 0;
         wallSideLeft = Physics2D.OverlapBoxAll(leftWallPos.position, new Vector2(.1f, .5f), 0, groundLayer).Length > 0;

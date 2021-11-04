@@ -34,7 +34,6 @@ public class WallJumping : MovementState
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         pmc.horizontalAxis = 0;
         _jumpTime += Time.deltaTime;
-
         if ((!pmc.jumpHeld && _jumpTime > minJumpTime) || _jumpTime >= maxJumpTime)
         {
             return freefallState;

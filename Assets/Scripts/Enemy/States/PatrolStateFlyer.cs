@@ -27,7 +27,7 @@ public class PatrolStateFlyer : EnemyState
 
     public override void UpdatePhysics(GameObject gameObject)
     {
-        EnemyAIController eac = gameObject.GetComponent<EnemyAIController>();
+        PatrollingAIController eac = gameObject.GetComponent<PatrollingAIController>();
         BoxCollider2D patrolArea = eac.patrolArea;
         Vector2 patrolAreaLeft = new Vector2(patrolArea.transform.position.x - patrolArea.size.x / 2 * patrolArea.transform.localScale.x, patrolArea.transform.position.y);
         Vector2 patrolAreaRight = new Vector2(patrolArea.transform.position.x + patrolArea.size.x / 2 * patrolArea.transform.localScale.x, patrolArea.transform.position.y);

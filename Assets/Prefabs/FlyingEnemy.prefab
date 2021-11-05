@@ -47,6 +47,63 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 15
+--- !u!1 &1774222441199086432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5935248468424878012}
+  - component: {fileID: 508654256789837972}
+  m_Layer: 0
+  m_Name: PatrolArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5935248468424878012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774222441199086432}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3732571166802727435}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &508654256789837972
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774222441199086432}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &3732571166802727431
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,8 +115,8 @@ GameObject:
   - component: {fileID: 3732571166802727435}
   - component: {fileID: 3732571166802727429}
   - component: {fileID: 3732571166802727428}
-  - component: {fileID: 5789531506809041207}
   - component: {fileID: 7328003821474867619}
+  - component: {fileID: 4608196156005997850}
   m_Layer: 0
   m_Name: FlyingEnemy
   m_TagString: Untagged
@@ -81,6 +138,7 @@ Transform:
   - {fileID: 3732571167700767224}
   - {fileID: 738997584592134762}
   - {fileID: 8016117493205203418}
+  - {fileID: 5935248468424878012}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -131,37 +189,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5789531506809041207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3732571166802727431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fbd6d3deaf376e4cb74036b113133bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundPos: {fileID: 3732571167700767224}
-  wallPos: {fileID: 3732571166802727435}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  stats: {fileID: 11400000, guid: 3d1ef92bccb819244aa8664482fe076f, type: 2}
-  gravity: {fileID: 11400000, guid: fbcb97f85e8473c40a6f198785756df2, type: 2}
-  patrolArea: {fileID: 0}
-  moveSpeed: 0
-  currentHealth: 0
-  horizontalAxis: 0
-  verticalAxis: 0
-  jump: 0
-  grounded: 0
-  walled: 0
-  wallSideLeft: 0
-  wallSideRight: 0
-  inAggro: 0
-  playerPos: {fileID: 0}
 --- !u!114 &7328003821474867619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +202,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 11400000, guid: 2062ea403f7a1cf45a7bc904d7878cd6, type: 2}
+--- !u!114 &4608196156005997850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732571166802727431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a912a2552b1dce44aeb800f2b5613fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundPos: {fileID: 3732571167700767224}
+  wallPos: {fileID: 3732571166802727435}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  stats: {fileID: 11400000, guid: 3d1ef92bccb819244aa8664482fe076f, type: 2}
+  gravity: {fileID: 11400000, guid: fbcb97f85e8473c40a6f198785756df2, type: 2}
+  deathSprite: {fileID: 21300000, guid: 03d119aeb8d77254fb8a016426a91e5d, type: 3}
+  moveSpeed: 0
+  currentHealth: 0
+  horizontalAxis: 0
+  verticalAxis: 0
+  jump: 0
+  grounded: 0
+  walled: 0
+  wallSideLeft: 0
+  wallSideRight: 0
+  inAggro: 0
+  playerStats: {fileID: 11400000, guid: 2a5bf8f697dc8f448baa3b3077236aa4, type: 2}
+  playerPos: {fileID: 0}
+  patrolArea: {fileID: 508654256789837972}
 --- !u!1 &3732571167700767227
 GameObject:
   m_ObjectHideFlags: 0

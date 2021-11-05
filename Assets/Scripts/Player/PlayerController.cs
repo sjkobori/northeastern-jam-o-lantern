@@ -19,12 +19,14 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        playerStats.playerPos = transform.position;
         invincibility = iFrames.value;
     }
 
     // Update is called once per frame
     void Update()
     {
+        playerStats.playerPos = transform.position;
         if (invincibility > 0)
         {
             invincibility -= Time.deltaTime;

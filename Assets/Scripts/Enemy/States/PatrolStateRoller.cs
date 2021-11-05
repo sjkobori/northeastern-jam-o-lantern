@@ -28,7 +28,7 @@ public class PatrolStateRoller : EnemyState
     public override void UpdatePhysics(GameObject gameObject)
     {
         Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-        EnemyAIController eac = gameObject.GetComponent<EnemyAIController>();
+        PatrollingAIController eac = gameObject.GetComponent<PatrollingAIController>();
         if (!(eac.patrolArea == null)) { 
         BoxCollider2D patrolArea = eac.patrolArea;
         Vector2 patrolAreaLeft = new Vector2(patrolArea.transform.position.x - patrolArea.size.x / 2 * patrolArea.transform.localScale.x, patrolArea.transform.position.y);

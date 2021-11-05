@@ -11,7 +11,7 @@ public class EnemyAIController : MonoBehaviour
     public EnemyStats stats;
     public FloatReference gravity;
     public Sprite deathSprite;
-    public BoxCollider2D patrolArea;
+    
 
     [HideInInspector]
     public float moveSpeed;
@@ -33,21 +33,25 @@ public class EnemyAIController : MonoBehaviour
     public bool wallSideRight;
     [HideInInspector]
     public bool inAggro;
- 
+
+    public PlayerStats playerStats; 
+    [HideInInspector]
     public Transform playerPos;
 
     private bool dying;
 
-    private void Awake()
+    protected virtual void Awake()
     {
+        
         moveSpeed = stats.moveSpeed;
         currentHealth = stats.maxHealth;
         dying = false;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
+        playerPos = GameObject.FindWithTag("Player").transform;
         if (currentHealth <= 0 && !dying)
         {
             Die();
@@ -59,7 +63,7 @@ public class EnemyAIController : MonoBehaviour
         var results = Physics2D.OverlapBoxAll(wallPos.position, new Vector2(1.1f * Mathf.Abs(transform.localScale.x), .95f * Mathf.Abs(transform.localScale.y)), 0, groundLayer);
         walled = results.Length > 0;
        // inAggro = Physics2D.IsTouching(GetComponentInChildren<CircleCollider2D>(), GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>());
-        playerPos = GameObject.FindGameObjectWithTag("Player").transform;
+
         if (walled)
         {
             Collider2D wall = results[0];

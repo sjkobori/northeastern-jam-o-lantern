@@ -278,8 +278,8 @@ MonoBehaviour:
   shootySound: {fileID: 8300000, guid: 98ea7cebb336b434c939a3997c0b78b9, type: 3}
   noShootySound: {fileID: 8300000, guid: 3ab57d52c659b74409a37f5ec0f13429, type: 3}
   slashySound: {fileID: 8300000, guid: 1da71bd30214a8d4fbaf196afab017fb, type: 3}
-  rangedCD: 1
-  meleeCD: 1
+  rangedCD: 0.2
+  meleeCD: 0.75
   playerStats: {fileID: 11400000, guid: 2a5bf8f697dc8f448baa3b3077236aa4, type: 2}
 --- !u!114 &949774420
 MonoBehaviour:

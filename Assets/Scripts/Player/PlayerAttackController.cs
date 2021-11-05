@@ -11,6 +11,9 @@ public class PlayerAttackController : MonoBehaviour
     bool meleeAttack;
     Transform rangedStartPos;
     bool rangedAttack;
+    [SerializeField] private AudioClip shootySound;
+    [SerializeField] private AudioClip noShootySound;
+    [SerializeField] private AudioClip slashySound;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,10 +31,10 @@ public class PlayerAttackController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             GetComponentInChildren<Animator>().SetTrigger("Slash");
-            StartCoroutine("meleeStrike");
+            StartCoroutine(nameof(meleeStrike));
         } else if (Input.GetKeyDown(KeyCode.X)) {
             GetComponentInChildren<Animator>().SetTrigger("Shoot");
-            StartCoroutine("rangedShot");
+            StartCoroutine(nameof(rangedShot));
         }
     }
 
@@ -39,6 +42,8 @@ public class PlayerAttackController : MonoBehaviour
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         float directionFacing = Mathf.Sign(pmc.facing.x);
+        
+        gameObject.GetComponentInChildren<AudioSource>().PlayOneShot(slashySound, 0.5f);
 
 
         List<EnemyAIController> hitList = new List<EnemyAIController>();
@@ -69,6 +74,9 @@ public class PlayerAttackController : MonoBehaviour
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         float directionFacing = Mathf.Sign(pmc.facing.x);
+
+        gameObject.GetComponentInChildren<AudioSource>().PlayOneShot(shootySound, 0.25f);
+        // gameObject.GetComponentInChildren<AudioSource>().PlayOneShot(noShootySound, 0.25f);
 
         ProjectileController bulletController = Instantiate(bullet, new Vector3(directionFacing,0,0) + transform.position, Quaternion.identity).GetComponent<ProjectileController>();
 

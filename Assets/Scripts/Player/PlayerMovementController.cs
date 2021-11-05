@@ -21,6 +21,10 @@ public class PlayerMovementController : MonoBehaviour
     public FloatReference gravity;
     public FloatReference jumpGravity;
 
+    [SerializeField] private List<AudioClip> stepSounds;
+    [SerializeField] private AudioClip landingSound;
+    [SerializeField] private AudioClip jumpSound;
+
     [HideInInspector]
     public float horizontalAxis;
     [HideInInspector]
@@ -40,9 +44,11 @@ public class PlayerMovementController : MonoBehaviour
     public Vector2 facing;
 
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
 
     private void Awake() {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         Face(Vector2.right);
     }
 
@@ -72,5 +78,18 @@ public class PlayerMovementController : MonoBehaviour
             Mathf.Sign(facing.y) * Mathf.Abs(scale.y),
             scale.z
         );
+    }
+
+    public void PlayRandomFootstep() {
+        AudioClip footstep = stepSounds[UnityEngine.Random.Range(0, stepSounds.Count)];
+        audioSource.PlayOneShot(footstep, 0.5f);
+    }
+
+    public void PlayLandingSound() {
+        audioSource.PlayOneShot(landingSound, 0.5f);
+    }
+
+    public void PlayJumpSound() {
+        audioSource.PlayOneShot(jumpSound, 0.5f);
     }
 }

@@ -16,7 +16,17 @@ public class PlayerStats : ScriptableObject
 
     private void OnEnable()
     {
+        resetHealth();
+        resetAmmo();
+    }
+
+    public void resetHealth()
+    {
         health = baseHealth;
+    }
+
+    public void resetAmmo()
+    {
         ammo = baseAmmo;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
         if (invincibility > 0)
         {
             invincibility -= Time.deltaTime;
@@ -39,10 +44,16 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         RespawnPointController rpc;
+        LoadingZoneController lzc;
         if (collision.gameObject.TryGetComponent(out rpc))
         {
             Debug.Log("Player got a respawn point: " + collision.gameObject.name);
             lastRespawnPoint = rpc.transform;
+        }
+        if (collision.gameObject.TryGetComponent(out lzc))
+        {
+            Debug.Log("Player hit a loading zone: " + collision.gameObject.name);
+            SceneManager.LoadScene("CreditsScene");
         }
     }
     private void OnCollisionStay2D(Collision2D collision)

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee94340e1cf08e4e90c53c8f9c5bedd, type: 3}
   m_Name: ChaseStateFlyer
   m_EditorClassIdentifier: 
-  patrolState: {fileID: 11400000, guid: 2062ea403f7a1cf45a7bc904d7878cd6, type: 2}
+  patrolState: {fileID: 11400000, guid: 247f5d57d82d9c44b83e164a7c53c4fd, type: 2}

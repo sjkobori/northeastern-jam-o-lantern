@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 365bf1b35a94f7e4ab17697f9b10d4cd, type: 3}
-  m_Name: RollerStats
+  m_Script: {fileID: 11500000, guid: ead02743d78829d409f98af6f01a3c59, type: 3}
+  m_Name: FlyerPatrol
   m_EditorClassIdentifier: 
-  maxHealth: 1000
-  moveSpeed: 3
-  chaseSpeed: 5
+  chaseState: {fileID: 11400000, guid: 646845b74980cec43aea9baabe852a78, type: 2}

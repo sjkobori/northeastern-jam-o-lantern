@@ -31,12 +31,8 @@ public class EnemyAIController : MonoBehaviour
     public bool wallSideLeft;
     [HideInInspector]
     public bool wallSideRight;
-    [HideInInspector]
-    public bool inAggro;
 
     public PlayerStats playerStats; 
-    [HideInInspector]
-    public Transform playerPos;
 
     private bool dying;
 
@@ -51,10 +47,10 @@ public class EnemyAIController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        playerPos = GameObject.FindWithTag("Player").transform;
+        //playerPos = GameObject.FindWithTag("Player").transform;
         if (currentHealth <= 0 && !dying)
         {
-            Die();
+           // Die();
         }
 
         wallSideLeft = false;

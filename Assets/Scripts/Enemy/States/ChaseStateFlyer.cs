@@ -11,7 +11,7 @@ public class ChaseStateFlyer : EnemyState
     public override EnemyState UpdateLogic(GameObject gameObject)
     {
 
-        EnemyAIController ec = gameObject.GetComponent<EnemyAIController>();
+        PatrollingAIController ec = gameObject.GetComponent<PatrollingAIController>();
 
         base.UpdateLogic(gameObject);
         if (!ec.inAggro)
@@ -24,15 +24,12 @@ public class ChaseStateFlyer : EnemyState
 
     public override void UpdatePhysics(GameObject gameObject)
     {
-        EnemyAIController eac = gameObject.GetComponent<EnemyAIController>();
+        PatrollingAIController eac =  gameObject.GetComponent<PatrollingAIController>();
 
         float x = this.moveRLTowards(eac.playerPos.position, eac.transform.position, gameObject, eac.stats.chaseSpeed);
-        float y = this.moveUDTowards(eac.playerPos.position, eac.transform.position, gameObject, eac.stats.chaseSpeed, 4);
+        float y = this.moveUDTowards(eac.playerPos.position, eac.transform.position, gameObject, eac.stats.chaseSpeed);
         eac.transform.position = new Vector2(x, y);
         base.UpdatePhysics(gameObject);
-
-
-        // targetVel = new Vector2(0, rigidbody2D.velocity.y);
     }
 
 }

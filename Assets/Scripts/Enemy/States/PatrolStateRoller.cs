@@ -29,6 +29,7 @@ public class PatrolStateRoller : EnemyState
     {
         Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         EnemyAIController eac = gameObject.GetComponent<EnemyAIController>();
+        if (!(eac.patrolArea == null)) { 
         BoxCollider2D patrolArea = eac.patrolArea;
         Vector2 patrolAreaLeft = new Vector2(patrolArea.transform.position.x - patrolArea.size.x / 2 * patrolArea.transform.localScale.x, patrolArea.transform.position.y);
         Vector2 patrolAreaRight = new Vector2(patrolArea.transform.position.x + patrolArea.size.x / 2 * patrolArea.transform.localScale.x, patrolArea.transform.position.y);
@@ -40,7 +41,7 @@ public class PatrolStateRoller : EnemyState
         else if (!finishedRight)
         {
             newX = this.moveRLTowards(patrolAreaLeft, eac.transform.position, gameObject, eac.stats.moveSpeed);
-            if (Vector2.Distance((Vector2)eac.transform.position, patrolAreaLeft) < 1 )
+            if (Vector2.Distance((Vector2)eac.transform.position, patrolAreaLeft) < 1)
             {
                 finishedRight = true;
             }
@@ -52,7 +53,11 @@ public class PatrolStateRoller : EnemyState
                 finishedRight = false;
             }
         }
-        eac.transform.position = new Vector2(newX, eac.transform.position.y);
+
+
+            eac.transform.position = new Vector2(newX, eac.transform.position.y);
+        
+         }
         base.applyYForces(rigidbody2D, eac);
         base.UpdatePhysics(gameObject);
 

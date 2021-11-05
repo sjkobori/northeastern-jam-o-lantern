@@ -7,8 +7,6 @@ public class EnemyAIController : MonoBehaviour
 {
     public Transform groundPos;
     public Transform wallPos;
-    public Transform bottomRight;
-    public Transform bottomLeft;
     public LayerMask groundLayer;
     public EnemyStats stats;
     public FloatReference gravity;
@@ -37,12 +35,6 @@ public class EnemyAIController : MonoBehaviour
     public bool inAggro;
  
     public Transform playerPos;
-    [HideInInspector]
-    public bool bottomRightEmpty;
-    [HideInInspector]
-    public bool bottomLeftEmpty;
-    //ground friction / movespeed
-    //air friction / movespeed
 
 
     private void Awake()
@@ -66,9 +58,7 @@ public class EnemyAIController : MonoBehaviour
         wallSideLeft = false;
         wallSideRight = false;
         grounded = Physics2D.OverlapBoxAll(groundPos.position, new Vector2(.5f * transform.localScale.x, 0.1f * transform.localScale.y), 0, groundLayer).Length > 0;
-        bottomRightEmpty = Physics2D.OverlapBoxAll(bottomRight.position, new Vector2(.5f * Mathf.Abs(transform.localScale.x), 0.1f * transform.localScale.y), 0, groundLayer).Length == 0;
-        bottomLeftEmpty = Physics2D.OverlapBoxAll(bottomLeft.position, new Vector2(.5f * Mathf.Abs(transform.localScale.x), 0.1f * transform.localScale.y), 0, groundLayer).Length == 0;
-        var results = Physics2D.OverlapBoxAll(wallPos.position, new Vector2(1.1f * Mathf.Abs(transform.localScale.x), .9f * Mathf.Abs(transform.localScale.y)), 0, groundLayer);
+        var results = Physics2D.OverlapBoxAll(wallPos.position, new Vector2(1.1f * Mathf.Abs(transform.localScale.x), .95f * Mathf.Abs(transform.localScale.y)), 0, groundLayer);
         walled = results.Length > 0;
         inAggro = Physics2D.IsTouching(GetComponentInChildren<CircleCollider2D>(), GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>());
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
@@ -93,3 +83,5 @@ public class EnemyAIController : MonoBehaviour
         Debug.Log(gameObject.name + " is at " + currentHealth + " health!");
     }
 }   
+
+

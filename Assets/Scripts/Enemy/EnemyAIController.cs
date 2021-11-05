@@ -36,23 +36,21 @@ public class EnemyAIController : MonoBehaviour
  
     public Transform playerPos;
 
+    private bool dying;
 
     private void Awake()
     {
         moveSpeed = stats.moveSpeed;
         currentHealth = stats.maxHealth;
+        dying = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !dying)
         {
-            Debug.Log(gameObject.name + " just died :(");
-            //die and play animation
-            gameObject.GetComponentInChildren<SpriteRenderer>().sprite = deathSprite;
-            //currentSprite.sprite = deathSprite;
-            Destroy(gameObject, .5f);
+            Die();
         }
 
         wallSideLeft = false;
@@ -60,7 +58,7 @@ public class EnemyAIController : MonoBehaviour
         grounded = Physics2D.OverlapBoxAll(groundPos.position, new Vector2(.5f * transform.localScale.x, 0.1f * transform.localScale.y), 0, groundLayer).Length > 0;
         var results = Physics2D.OverlapBoxAll(wallPos.position, new Vector2(1.1f * Mathf.Abs(transform.localScale.x), .95f * Mathf.Abs(transform.localScale.y)), 0, groundLayer);
         walled = results.Length > 0;
-        inAggro = Physics2D.IsTouching(GetComponentInChildren<CircleCollider2D>(), GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>());
+       // inAggro = Physics2D.IsTouching(GetComponentInChildren<CircleCollider2D>(), GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>());
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         if (walled)
         {
@@ -81,6 +79,15 @@ public class EnemyAIController : MonoBehaviour
         Debug.Log(gameObject.name + " got hit for " + damage + " damage!");
         currentHealth -= damage;
         Debug.Log(gameObject.name + " is at " + currentHealth + " health!");
+    }
+
+    protected void Die()
+    {
+        dying = true;
+        Debug.Log(gameObject.name + " just died :(");
+        //die and play animation
+        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = deathSprite;
+        Destroy(gameObject, .5f);
     }
 }   
 

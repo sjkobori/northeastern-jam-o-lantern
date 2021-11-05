@@ -15,24 +15,33 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField] private AudioClip noShootySound;
     [SerializeField] private AudioClip slashySound;
 
+    public float rangedCD;
+    public float meleeCD;
+
+    private float _currentMeleeCD;
+    private float _currentRangedCD;
+
+    public PlayerStats playerStats;
+
+
+
     // Start is called before the first frame update
     void Awake()
     {
-        
+        RefreshMeleeCD();
+        RefreshRangedCD();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //meleeAttack = 
+        UpdateCD();
 
-        //rangedAttack = Input.GetButton("RangedAttack");
-
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && _currentMeleeCD < 0)
         {
             GetComponentInChildren<Animator>().SetTrigger("Slash");
             StartCoroutine(nameof(meleeStrike));
-        } else if (Input.GetKeyDown(KeyCode.X)) {
+        } else if (Input.GetKeyDown(KeyCode.X) && _currentRangedCD < 0) {
             GetComponentInChildren<Animator>().SetTrigger("Shoot");
             StartCoroutine(nameof(rangedShot));
         }
@@ -47,41 +56,74 @@ public class PlayerAttackController : MonoBehaviour
 
 
         List<EnemyAIController> hitList = new List<EnemyAIController>();
-        float mag = new Vector2(0, 1.75f).magnitude;
 
 
-        for (float deg = Mathf.PI/2; deg >= -Mathf.PI/4 ; deg += -0.2f)
-        {
-            var hit = Physics2D.Raycast(transform.position, 
-                new Vector2(Mathf.Cos(deg) * mag * directionFacing, Mathf.Sin(deg) * mag), 1, enemyLayer);
-            Debug.DrawRay(transform.position,
-                new Vector2(Mathf.Cos(deg) * mag * directionFacing, Mathf.Sin(deg) * mag), Color.red, .5f);
-            if (hit)
+        Vector2 meleePos = (Vector2)transform.position + new Vector2(.75f, 0) * directionFacing;
+        float radius = 1.25f;
+        var attackHits = Physics2D.OverlapCircleAll(meleePos, radius, enemyLayer);
+   
+            if (attackHits.Length > 0)
             {
-                EnemyAIController enemyHit = hit.collider.gameObject.GetComponent<EnemyAIController>();
-                if (!hitList.Contains(enemyHit)) {
-                    enemyHit.dealDamage(10);
-                    Debug.Log("Enemy Hit");
-                    hitList.Add(enemyHit);
+                EnemyAIController enemyHit;
+                foreach (Collider2D c in attackHits)
+                {
+                    enemyHit = c.gameObject.GetComponent<EnemyAIController>();
+                    if (!hitList.Contains(enemyHit))
+                    {
+                        playerStats.resetAmmo();
+                        enemyHit.dealDamage(10);
+                        Debug.Log("Enemy Hit");
+                        hitList.Add(enemyHit);
+                    }
                 }
-                
+
+
             }
-            yield return new WaitForSeconds(.01f);
-        }
+            yield return new WaitForSeconds(.05f);
     }
 
     IEnumerator rangedShot()
     {
-        PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
-        float directionFacing = Mathf.Sign(pmc.facing.x);
+        if (playerStats.ammo > 0)
+        {
+            playerStats.ammo--;
+            PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
+            float directionFacing = Mathf.Sign(pmc.facing.x);
+            gameObject.GetComponentInChildren<AudioSource>().PlayOneShot(shootySound, 0.25f);
+       
+            ProjectileController bulletController = Instantiate(bullet, new Vector3(directionFacing, 0, 0) + transform.position, Quaternion.identity).GetComponent<ProjectileController>();
 
-        gameObject.GetComponentInChildren<AudioSource>().PlayOneShot(shootySound, 0.25f);
-        // gameObject.GetComponentInChildren<AudioSource>().PlayOneShot(noShootySound, 0.25f);
+            bulletController.dir = Vector2.right * directionFacing;
+        } else
+        {
+            gameObject.GetComponentInChildren<AudioSource>().PlayOneShot(noShootySound, 0.25f);
 
-        ProjectileController bulletController = Instantiate(bullet, new Vector3(directionFacing,0,0) + transform.position, Quaternion.identity).GetComponent<ProjectileController>();
-
-        bulletController.dir = Vector2.right * directionFacing;
+        }
+        
          yield return null;
         
+    }
+
+    private void RefreshMeleeCD()
+    {
+        _currentMeleeCD = meleeCD;
+        
+    }
+
+    private void RefreshRangedCD()
+    {
+        _currentRangedCD = rangedCD;
+    }
+
+    private void UpdateCD()
+    {
+        if (_currentRangedCD > 0)
+        {
+            _currentMeleeCD -= Time.deltaTime;
+        }
+        if (_currentRangedCD > 0)
+        {
+            _currentRangedCD -= Time.deltaTime;
+        }
     }
 }

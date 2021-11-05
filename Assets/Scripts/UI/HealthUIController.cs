@@ -6,34 +6,20 @@ using UnityEngine.UI;
 public class HealthUIController : MonoBehaviour {
 
     [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private Sprite healthSprite;
+    [SerializeField] private Sprite[] healthSprites;
+    // [SerializeField] private Sprite healthSprite;
 
     private int _health;
-    private GameObject heart;
+    private Image image;
 
     void Awake() {
-        heart = new GameObject();
-        heart.name = "heart";
-        Image newImg = heart.AddComponent<Image>();
-        newImg.sprite = healthSprite;
+        image = GetComponent<Image>();
     }
     
     void Update() {
         if (_health == playerStats.health) return;
 
-        if (_health < playerStats.health) {
-            for (int i = 0; i < playerStats.health - _health; i++) {
-                Instantiate(heart, transform);
-            }
-        } else {
-            int toDestroy = _health - playerStats.health;
-            foreach (Transform child in transform) {
-                if (toDestroy == 0) break;
-                Destroy(child.gameObject);
-                toDestroy--;
-            }
-        }
-
+        image.sprite = healthSprites[playerStats.health - 1];
         _health = playerStats.health;
     }
 }

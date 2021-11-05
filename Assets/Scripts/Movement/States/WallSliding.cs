@@ -9,6 +9,14 @@ public class WallSliding : AXMoveState
     [SerializeField] private MovementState freefallState;
     [SerializeField] private MovementState walljumpState;
 
+    public override void Enter(GameObject gameObject) {
+        gameObject.GetComponentInChildren<Animator>().SetBool("OnWall", true);
+    }
+    
+    public override void Exit(GameObject gameObject) {
+        gameObject.GetComponentInChildren<Animator>().SetBool("OnWall", false);
+    }
+
     [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject)
     {
@@ -41,13 +49,16 @@ public class WallSliding : AXMoveState
         base.UpdatePhysics(gameObject);
         
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
-        if (!pmc.wallSideLeft || !pmc.wallSideRight) {
-            if (pmc.wallSideLeft) {
-                pmc.Face(Vector2.right);
-            } else if (pmc.wallSideRight) {
-                pmc.Face(Vector2.left);
-            }
-        }
+
+        int direction = pmc.wallSideLeft ? -1 : 1;
+        pmc.Face(new Vector2(direction, 0));
+        // if (!pmc.wallSideLeft || !pmc.wallSideRight) {
+        //     if (pmc.wallSideLeft) {
+        //         pmc.Face(Vector2.right);
+        //     } else if (pmc.wallSideRight) {
+        //         pmc.Face(Vector2.left);
+        //     }
+        // }
     }
 
     protected override float getVerticalCap(PlayerMovementController pmc)

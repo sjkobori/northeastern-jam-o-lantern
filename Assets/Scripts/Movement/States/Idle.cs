@@ -10,6 +10,10 @@ public class Idle : AXMoveState
     [SerializeField] private MovementState jumpingState;
     [SerializeField] private MovementState freefallState;
 
+    public override void Enter(GameObject gameObject) {
+        gameObject.GetComponentInChildren<Animator>().SetBool("Grounded", true);
+    }
+
     public override MovementState UpdateLogic(GameObject gameObject)
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();

@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: WallJumpingState
   m_EditorClassIdentifier: 
   freefallState: {fileID: 11400000, guid: c1a58686e19df5d438783589d3f91ea3, type: 2}
+  maxJumpTime: 0.25
+  minJumpTime: 0.1

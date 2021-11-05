@@ -1,5 +1,4 @@
-﻿using JetBrains.Annotations;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "FreefallState", menuName = "ScriptableObjects/MovementStates/Freefall", order = 1)]
 public class Freefall: AXMoveState {
@@ -17,12 +16,7 @@ public class Freefall: AXMoveState {
         _preserveXMoveSpeed = true;
     }
 
-    public override void Exit(GameObject gameObject) {
-        gameObject.GetComponentInChildren<Animator>().SetBool("Grounded", true);
-        base.Exit(gameObject);
-    }
 
-    [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject)
     {
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();

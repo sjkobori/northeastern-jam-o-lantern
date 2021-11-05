@@ -49,8 +49,8 @@ MonoBehaviour:
   hitList:
     serializedVersion: 2
     m_Bits: 384
-  speed: 10
-  damage: 10
+  speed: 15
+  damage: 5
   dir: {x: 0, y: 0}
   explosionSprite: {fileID: 0}
 --- !u!70 &5608046264815633258

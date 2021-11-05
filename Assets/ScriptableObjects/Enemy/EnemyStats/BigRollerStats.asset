@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 365bf1b35a94f7e4ab17697f9b10d4cd, type: 3}
-  m_Name: FlyerStats
+  m_Name: BigRollerStats
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  moveSpeed: 3
-  chaseSpeed: 5
+  maxHealth: 50
+  moveSpeed: 10
+  chaseSpeed: 20

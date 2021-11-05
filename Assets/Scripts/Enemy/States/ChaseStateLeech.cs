@@ -11,10 +11,10 @@ public class ChaseStateLeech : EnemyState
     public override EnemyState UpdateLogic(GameObject gameObject)
     {
 
-        EnemyAIController ec = gameObject.GetComponent<EnemyAIController>();
+        PatrollingAIController ec = gameObject.GetComponent<PatrollingAIController>();
 
         base.UpdateLogic(gameObject);
-        if (Vector2.Distance((Vector2) ec.playerPos.position, (Vector2) ec.transform.position) < 1)
+        if (Vector2.Distance((Vector2) ec.playerPos.position, (Vector2) ec.transform.position) < 1.2f)
         {
             ec.GetComponent<BoxCollider2D>().isTrigger = true;
             return suckState;
@@ -25,10 +25,10 @@ public class ChaseStateLeech : EnemyState
 
     public override void UpdatePhysics(GameObject gameObject)
     {
-        EnemyAIController eac = gameObject.GetComponent<EnemyAIController>();
+        PatrollingAIController eac = gameObject.GetComponent<PatrollingAIController>();
 
         float x = this.moveRLTowards(eac.playerPos.position, eac.transform.position, gameObject, eac.stats.chaseSpeed);
-        float y = this.moveUDTowards(eac.playerPos.position, eac.transform.position, gameObject, eac.stats.chaseSpeed/2, (float) -0.05);
+        float y = this.moveUDTowards(eac.playerPos.position, eac.transform.position, gameObject, eac.stats.chaseSpeed/2);
         eac.transform.position = new Vector2(x, y);
         base.UpdatePhysics(gameObject);
     }

@@ -13,9 +13,12 @@ public class PlayerStats : ScriptableObject
     private int baseAmmo;
     [HideInInspector]
     public int ammo;
+    [HideInInspector]
+    public Vector2 playerPos;
 
     private void OnEnable()
     {
+        playerPos = new Vector2(0, 0);
         resetHealth();
         resetAmmo();
     }

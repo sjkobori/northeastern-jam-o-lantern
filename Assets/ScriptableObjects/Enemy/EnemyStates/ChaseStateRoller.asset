@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef679ae36d865b4bb0d9e9466bd597e, type: 3}
   m_Name: ChaseStateRoller
   m_EditorClassIdentifier: 
-  patrolState: {fileID: 11400000, guid: c35db7069d6974448b58381fd044e2fd, type: 2}
+  patrolState: {fileID: 11400000, guid: 938c8c0e3188c3145a34de1729dc5a04, type: 2}

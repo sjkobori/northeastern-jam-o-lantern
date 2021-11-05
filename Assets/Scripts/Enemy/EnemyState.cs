@@ -54,14 +54,14 @@ public abstract class EnemyState : ScriptableState<EnemyState> {
         }
     }
 
-    protected float moveUDTowards(Vector2 moveTo, Vector2 moveFrom, GameObject gameObject, float moveSpeed, float offset)
+    protected float moveUDTowards(Vector2 moveTo, Vector2 moveFrom, GameObject gameObject, float moveSpeed)
     {
         EnemyAIController eac = gameObject.GetComponent<EnemyAIController>();
-        if (moveFrom.y < moveTo.y + offset)
+        if (moveFrom.y < moveTo.y)
         {
             return moveFrom.y + moveSpeed * Time.deltaTime;
         }
-        else if (moveFrom.y < moveTo.y + offset + 0.1)
+        else if (moveFrom.y < moveTo.y)
         {
             return moveFrom.y;
         }

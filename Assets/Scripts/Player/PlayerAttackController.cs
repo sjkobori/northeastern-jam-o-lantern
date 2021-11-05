@@ -37,11 +37,11 @@ public class PlayerAttackController : MonoBehaviour
     {
         UpdateCD();
 
-        if (Input.GetKeyDown(KeyCode.Z) && _currentMeleeCD <= 0)
+        if (Input.GetButtonDown("Fire1") && _currentMeleeCD <= 0)
         {
             GetComponentInChildren<Animator>().SetTrigger("Slash");
             StartCoroutine(nameof(meleeStrike));
-        } else if (Input.GetKeyDown(KeyCode.X) && _currentRangedCD <= 0) {
+        } else if (Input.GetButtonDown("Fire2") && _currentRangedCD <= 0) {
             GetComponentInChildren<Animator>().SetTrigger("Shoot");
             StartCoroutine(nameof(rangedShot));
         }

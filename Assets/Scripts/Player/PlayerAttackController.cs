@@ -28,8 +28,8 @@ public class PlayerAttackController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        RefreshMeleeCD();
-        RefreshRangedCD();
+        _currentMeleeCD = 0;
+        _currentRangedCD = 0;
     }
 
     // Update is called once per frame
@@ -37,11 +37,11 @@ public class PlayerAttackController : MonoBehaviour
     {
         UpdateCD();
 
-        if (Input.GetKeyDown(KeyCode.Z) && _currentMeleeCD < 0)
+        if (Input.GetKeyDown(KeyCode.Z) && _currentMeleeCD <= 0)
         {
             GetComponentInChildren<Animator>().SetTrigger("Slash");
             StartCoroutine(nameof(meleeStrike));
-        } else if (Input.GetKeyDown(KeyCode.X) && _currentRangedCD < 0) {
+        } else if (Input.GetKeyDown(KeyCode.X) && _currentRangedCD <= 0) {
             GetComponentInChildren<Animator>().SetTrigger("Shoot");
             StartCoroutine(nameof(rangedShot));
         }
@@ -49,6 +49,7 @@ public class PlayerAttackController : MonoBehaviour
 
     IEnumerator meleeStrike()
     {
+        RefreshMeleeCD();
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         float directionFacing = Mathf.Sign(pmc.facing.x);
         
@@ -84,6 +85,7 @@ public class PlayerAttackController : MonoBehaviour
 
     IEnumerator rangedShot()
     {
+        RefreshRangedCD();
         if (playerStats.ammo > 0)
         {
             playerStats.ammo--;
@@ -117,7 +119,7 @@ public class PlayerAttackController : MonoBehaviour
 
     private void UpdateCD()
     {
-        if (_currentRangedCD > 0)
+        if (_currentMeleeCD > 0)
         {
             _currentMeleeCD -= Time.deltaTime;
         }

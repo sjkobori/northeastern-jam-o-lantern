@@ -8,8 +8,11 @@ public class Jumping : AXMoveState {
 
     //private float _jumpStart;
     private float _jumpTime;
-    private float maxJumpTime = 0.75f;
-    private float minJumpTime = 0.2f;
+    [SerializeField]
+    private float maxJumpTime;
+    [SerializeField]
+    private float minJumpTime;
+
 
     public override void Enter(GameObject gameObject)
     {

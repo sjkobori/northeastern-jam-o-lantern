@@ -10,8 +10,10 @@ public class WallJumping : MovementState
     //private float _jumpStart;
     //private float maxJumpHold = 0.15f;
     private float _jumpTime;
-    private float maxJumpTime = 0.75f;
-    private float minJumpTime = 0.2f;
+    [SerializeField]
+    private float maxJumpTime;
+    [SerializeField]
+    private float minJumpTime;
 
     public override void Enter(GameObject gameObject)
     {
@@ -19,11 +21,14 @@ public class WallJumping : MovementState
         // gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
         Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
-        float jumpX = (pmc.wallSideLeft ? 1 : -1) * pmc.groundMoveSpeed.value;
+        int direction = pmc.wallSideLeft ? 1 : -1;
+        float jumpX = direction * pmc.groundMoveSpeed.value;
         
         rigidbody2D.velocity = new Vector2( jumpX,  pmc.jumpSpeed.value);
+
+        pmc.Face(new Vector2(direction, 0));
         
-        gameObject.GetComponentInChildren<Animator>().SetTrigger("Jump");
+        gameObject.GetComponentInChildren<Animator>().SetTrigger("WallJump");
         gameObject.GetComponentInChildren<Animator>().SetBool("Grounded", false);
         base.Enter(gameObject);
     }
@@ -34,8 +39,7 @@ public class WallJumping : MovementState
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         pmc.horizontalAxis = 0;
         _jumpTime += Time.deltaTime;
-        if ((!pmc.jumpHeld && _jumpTime > minJumpTime) || _jumpTime >= maxJumpTime)
-        {
+        if ((!pmc.jumpHeld && _jumpTime > minJumpTime) || _jumpTime >= maxJumpTime) {
             return freefallState;
         }
 

@@ -27,9 +27,10 @@ public class PlayerAttackController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            GetComponentInChildren<Animator>().SetTrigger("Slash");
             StartCoroutine("meleeStrike");
-        } else if (Input.GetKeyDown(KeyCode.X))
-        {
+        } else if (Input.GetKeyDown(KeyCode.X)) {
+            GetComponentInChildren<Animator>().SetTrigger("Shoot");
             StartCoroutine("rangedShot");
         }
     }

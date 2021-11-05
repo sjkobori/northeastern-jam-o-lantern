@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,5 +38,9 @@ public class ProjectileController : MonoBehaviour
         //currentSprite.sprite = deathSprite;
         Destroy(gameObject, .5f);
         
+    }
+
+    private void OnBecameInvisible() {
+        Destroy(gameObject);
     }
 }

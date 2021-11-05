@@ -13,6 +13,7 @@ public class Moving : AXMoveState
     public override void Enter(GameObject gameObject)
     {
         // gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        gameObject.GetComponentInChildren<Animator>().SetBool("Grounded", true);
         gameObject.GetComponentInChildren<Animator>().SetBool("Moving", true);
         base.Enter(gameObject);
     }

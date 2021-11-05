@@ -917,6 +917,8 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 2
     m_Data: {fileID: 7482667652216324306, guid: c37541c956c3ebb4091e85e6202376d4, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 2
     m_Data:
@@ -938,7 +940,7 @@ Tilemap:
       e33: 1
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: 2.6305e-41, g: 2.6305e-41, b: 2.6305e-41, a: 2.6305e-41}
+    m_Data: {r: 2.6577e-41, g: 2.6577e-41, b: 2.6577e-41, a: 2.6577e-41}
   - m_RefCount: 2
     m_Data: {r: 0, g: 0.21960786, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []

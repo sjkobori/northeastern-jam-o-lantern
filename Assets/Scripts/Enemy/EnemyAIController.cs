@@ -47,10 +47,9 @@ public class EnemyAIController : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        //playerPos = GameObject.FindWithTag("Player").transform;
         if (currentHealth <= 0 && !dying)
         {
-           // Die();
+           Die();
         }
 
         wallSideLeft = false;
@@ -58,7 +57,6 @@ public class EnemyAIController : MonoBehaviour
         grounded = Physics2D.OverlapBoxAll(groundPos.position, new Vector2(.5f * transform.localScale.x, 0.1f * transform.localScale.y), 0, groundLayer).Length > 0;
         var results = Physics2D.OverlapBoxAll(wallPos.position, new Vector2(1.1f * Mathf.Abs(transform.localScale.x), .95f * Mathf.Abs(transform.localScale.y)), 0, groundLayer);
         walled = results.Length > 0;
-       // inAggro = Physics2D.IsTouching(GetComponentInChildren<CircleCollider2D>(), GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>());
 
         if (walled)
         {

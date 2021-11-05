@@ -28,7 +28,7 @@ public class PatrollingAIController : EnemyAIController
         destIndex = 0;
         numPatrolAreas = patrolAreas.Length;
         inAggro = false;
-        Debug.Log(destPoints[0].ToString() + " and " + destPoints[1].ToString());
+        base.Awake();
     }
 
     protected void OnTriggerStay2D(Collider2D collision)

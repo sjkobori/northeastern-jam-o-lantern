@@ -33,7 +33,6 @@ public class PatrollerState : EnemyState
             eac.setNextPos();
         }
         eac.transform.position = new Vector2(this.moveRLTowards(eac.destination, eac.transform.position, gameObject, eac.stats.moveSpeed), eac.transform.position.y);
-        Debug.Log(eac.transform.position.ToString());
         base.applyYForces(rigidbody2D, eac);
         base.UpdatePhysics(gameObject);
     }

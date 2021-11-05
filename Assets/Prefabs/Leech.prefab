@@ -150,6 +150,7 @@ MonoBehaviour:
     m_Bits: 128
   stats: {fileID: 11400000, guid: ba98c3c35a9311f4da25df338935bb71, type: 2}
   gravity: {fileID: 11400000, guid: fbcb97f85e8473c40a6f198785756df2, type: 2}
+  deathSprite: {fileID: 0}
   patrolArea: {fileID: 0}
   moveSpeed: 0
   currentHealth: 0
@@ -276,7 +277,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3a115b2893e3684489703495b776be73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1

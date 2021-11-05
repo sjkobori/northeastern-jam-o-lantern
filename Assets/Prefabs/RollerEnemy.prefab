@@ -207,8 +207,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundPos: {fileID: 3732571167700767224}
   wallPos: {fileID: 3732571166802727435}
-  bottomRight: {fileID: 1908793443}
-  bottomLeft: {fileID: 435630184}
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -227,8 +225,6 @@ MonoBehaviour:
   wallSideRight: 0
   inAggro: 0
   playerPos: {fileID: 0}
-  bottomRightEmpty: 0
-  bottomLeftEmpty: 0
 --- !u!114 &7328003821474867619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,7 +338,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ce6dce3b17995504ea3a6afbe5cc6c8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

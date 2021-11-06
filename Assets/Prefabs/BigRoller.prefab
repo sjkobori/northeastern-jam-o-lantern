@@ -149,7 +149,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   stats: {fileID: 11400000, guid: d46a2ebe77d21934cad5ae4e1d2962e2, type: 2}
-  gravity: {fileID: 11400000, guid: cbacc1f924571c64d8c8106a13f3107f, type: 2}
+  gravity: {fileID: 11400000, guid: fbcb97f85e8473c40a6f198785756df2, type: 2}
   deathSprite: {fileID: 21300000, guid: 03d119aeb8d77254fb8a016426a91e5d, type: 3}
   moveSpeed: 0
   currentHealth: 0

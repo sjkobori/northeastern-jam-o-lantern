@@ -14,7 +14,7 @@ public class ChaseStateLeech : EnemyState
         PatrollingAIController ec = gameObject.GetComponent<PatrollingAIController>();
 
         base.UpdateLogic(gameObject);
-        if (Vector2.Distance((Vector2) ec.playerPos.position, (Vector2) ec.transform.position) < 1.2f)
+        if (Vector2.Distance((Vector2) ec.playerPos.position, (Vector2) ec.transform.position) < 1.5f)
         {
             ec.GetComponent<BoxCollider2D>().isTrigger = true;
             return suckState;

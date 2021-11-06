@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PatrollingAIController : EnemyAIController
 {
+    public int aggroRadius;
     public Transform[] patrolAreas;
-
+    public LayerMask player;
     [HideInInspector]
     public Transform playerPos;
     [HideInInspector]
@@ -16,6 +17,8 @@ public class PatrollingAIController : EnemyAIController
     public Vector2 destination;
     private int destIndex;
     private List<Vector2> destPoints;
+
+    private Collider2D[] hitColliders;
 
     protected override void Awake()
     {
@@ -31,14 +34,16 @@ public class PatrollingAIController : EnemyAIController
         base.Awake();
     }
 
-    protected void OnTriggerStay2D(Collider2D collision)
+    protected override void Update()
     {
-        
-        if(collision.gameObject.tag.Equals("Player"))
+
+        var hitColliders = Physics2D.OverlapCircleAll(transform.position, aggroRadius, player);
+        if (hitColliders.Length > 0)
         {
-            playerPos = collision.gameObject.transform;
+            playerPos = hitColliders[0].transform;
             inAggro = true;
         }
+        base.Update();
     }
 
     public void setNextPos()

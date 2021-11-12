@@ -2,7 +2,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SuckState", menuName = "ScriptableObjects/EnemyStates/SuckState", order = 1)]
 public class SuckState : EnemyState
 {
-
     public override EnemyState UpdateLogic(GameObject gameObject)
     {
 

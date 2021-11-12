@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private float invincibility;
     public Transform lastRespawnPoint;
 
+    private HitboxController _hitbox;
+
     /// <summary>
     /// controls taking dmg
     /// dying
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         playerStats.playerPos = transform.position;
         invincibility = iFrames.value;
+        _hitbox = GetComponentInChildren<HitboxController>();
     }
 
     // Update is called once per frame
@@ -31,6 +35,8 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene("TitleScene");
         }
+
+        CheckForDamage();
         
         playerStats.playerPos = transform.position;
         if (invincibility > 0)
@@ -42,6 +48,20 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
+    }
+
+    private void CheckForDamage()
+    {
+        if (_hitbox.colliding &&  invincibility < 0)
+        {
+            TakeDamage();
+        }
+    }
+
+    private void TakeDamage()
+    {
+        playerStats.health--;
+        invincibility = iFrames.value;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -75,8 +95,7 @@ public class PlayerController : MonoBehaviour
             collision.gameObject.TryGetComponent(out hc)))
             {
                 Debug.Log("Player got hit by: " + collision.gameObject.name);
-                playerStats.health--;
-                invincibility = iFrames.value;
+                TakeDamage();
                 if (collision.gameObject.TryGetComponent(out hc))
                 {
                     Respawn();

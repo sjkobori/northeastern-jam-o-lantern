@@ -21,6 +21,8 @@ public class PlayerMovementController : MonoBehaviour
     public FloatReference gravity;
     public FloatReference jumpGravity;
 
+    public FloatReference knockbackSpeed;
+
     [SerializeField] private List<AudioClip> stepSounds;
     [SerializeField] private AudioClip landingSound;
     [SerializeField] private AudioClip jumpSound;

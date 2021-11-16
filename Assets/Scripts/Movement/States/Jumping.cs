@@ -29,13 +29,14 @@ public class Jumping : AXMoveState {
 
     [CanBeNull]
     public override MovementState UpdateLogic(GameObject gameObject) {
+        base.UpdateLogic(gameObject);
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         _jumpTime += Time.deltaTime;
         if ((!pmc.jumpHeld && _jumpTime > minJumpTime) || _jumpTime >= maxJumpTime) {
             return freefallState;
         }
 
-        return null;
+        return base.UpdateLogic(gameObject);
     }
 
     protected override void applyGravity(Rigidbody2D rigidbody, PlayerMovementController pmc)

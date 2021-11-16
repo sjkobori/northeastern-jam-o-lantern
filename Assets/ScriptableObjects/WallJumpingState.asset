@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42cbb1e9f5ef68f4d97e9c0efae2b406, type: 3}
   m_Name: WallJumpingState
   m_EditorClassIdentifier: 
+  knockbackState: {fileID: 11400000, guid: ccee609c907fc3046b1216058ac857a5, type: 2}
   freefallState: {fileID: 11400000, guid: c1a58686e19df5d438783589d3f91ea3, type: 2}
   maxJumpTime: 0.25
   minJumpTime: 0.1

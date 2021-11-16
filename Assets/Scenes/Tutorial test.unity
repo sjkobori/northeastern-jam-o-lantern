@@ -1841,6 +1841,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3732571166802727429, guid: e1ee6288bfdf7644e8feb9bc3b5ecd2f, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3732571166802727431, guid: e1ee6288bfdf7644e8feb9bc3b5ecd2f, type: 3}
       propertyPath: m_Name
       value: RollerEnemy
@@ -1851,11 +1855,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3732571166802727435, guid: e1ee6288bfdf7644e8feb9bc3b5ecd2f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.39975
+      value: 20.44
       objectReference: {fileID: 0}
     - target: {fileID: 3732571166802727435, guid: e1ee6288bfdf7644e8feb9bc3b5ecd2f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22.513786
+      value: -22.88
       objectReference: {fileID: 0}
     - target: {fileID: 3732571166802727435, guid: e1ee6288bfdf7644e8feb9bc3b5ecd2f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1887,6 +1891,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3732571166802727435, guid: e1ee6288bfdf7644e8feb9bc3b5ecd2f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8277689141886102399, guid: e1ee6288bfdf7644e8feb9bc3b5ecd2f, type: 3}
+      propertyPath: aggroRadius
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

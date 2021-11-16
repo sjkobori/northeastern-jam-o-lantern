@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28ffe948f0cb4ed4ab170976f73533c7, type: 3}
   m_Name: JumpingState
   m_EditorClassIdentifier: 
+  knockbackState: {fileID: 11400000, guid: ccee609c907fc3046b1216058ac857a5, type: 2}
   freefallState: {fileID: 11400000, guid: c1a58686e19df5d438783589d3f91ea3, type: 2}
   maxJumpTime: 1
   minJumpTime: 0.2

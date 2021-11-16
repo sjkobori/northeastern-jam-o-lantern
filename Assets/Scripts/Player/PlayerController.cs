@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public Transform lastRespawnPoint;
 
     private HitboxController _hitbox;
+    [HideInInspector]
+    public Vector2 enemyCenter;
+    [HideInInspector]
+    public bool takingDamage;
 
     /// <summary>
     /// controls taking dmg
@@ -52,9 +56,11 @@ public class PlayerController : MonoBehaviour
 
     private void CheckForDamage()
     {
+        takingDamage = false;
         if (_hitbox.colliding &&  invincibility < 0)
         {
             TakeDamage();
+            enemyCenter = _hitbox.collisionCenter;
         }
     }
 
@@ -62,6 +68,7 @@ public class PlayerController : MonoBehaviour
     {
         playerStats.health--;
         invincibility = iFrames.value;
+        takingDamage = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

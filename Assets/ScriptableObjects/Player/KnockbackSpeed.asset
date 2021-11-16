@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 365bf1b35a94f7e4ab17697f9b10d4cd, type: 3}
-  m_Name: RollerStats
+  m_Script: {fileID: 11500000, guid: 85ec2f7ff0aed4147bad6f8448506421, type: 3}
+  m_Name: KnockbackSpeed
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  moveSpeed: 1
-  chaseSpeed: 1
+  value: 10

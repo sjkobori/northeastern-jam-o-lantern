@@ -16,8 +16,10 @@ public abstract class AXMoveState: MovementState {
         base.UpdatePhysics(gameObject);
     }
 
+
     protected virtual float getXMoveSpeed(PlayerMovementController pmc, Rigidbody2D rigidbody)
     {
         return pmc.horizontalAxis * pmc.groundMoveSpeed.value;
     }
+
 }

@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 598affb64a6c6f145ab40ccf1a933422, type: 3}
-  m_Name: MovingState
+  m_Script: {fileID: 11500000, guid: dd2b6a6aabbb02a4785db912867eb9d3, type: 3}
+  m_Name: KnockbackState
   m_EditorClassIdentifier: 
-  knockbackState: {fileID: 11400000, guid: ccee609c907fc3046b1216058ac857a5, type: 2}
-  idleState: {fileID: 11400000, guid: d6484956ea97d9948a23ae806e326949, type: 2}
-  jumpingState: {fileID: 11400000, guid: 4e5d91499117f294d91da22d4915da0c, type: 2}
+  knockbackState: {fileID: 11400000}
   freefallState: {fileID: 11400000, guid: c1a58686e19df5d438783589d3f91ea3, type: 2}
+  maxKnockbackTime: 0.25

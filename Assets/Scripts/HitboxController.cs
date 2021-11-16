@@ -4,22 +4,32 @@ using UnityEngine;
 
 public class HitboxController : MonoBehaviour
 {
+    [HideInInspector]
     public bool colliding;
+    [HideInInspector]
+    public Vector2 collisionCenter;
     public LayerMask layers;
     // Start is called before the first frame update
+    [SerializeField]
+    private BoxCollider2D collider2D;
     void Start()
     {
         colliding = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        colliding = true;
-        //Debug.Log("Hitbox colliding!");
+        if (!collider2D.IsTouchingLayers(layers))
+        {
+            colliding = false;
+            collisionCenter = Vector2.zero;
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        colliding = false;
+        colliding = true;
+        collisionCenter = collision.transform.position;
+        //Debug.Log("Hitbox colliding!");
     }
 }

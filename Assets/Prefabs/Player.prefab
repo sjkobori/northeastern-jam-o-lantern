@@ -242,6 +242,7 @@ MonoBehaviour:
   wallSlideSpeedRatio: {fileID: 11400000, guid: 62af90f847a3c6a438e45ad3b6e52299, type: 2}
   gravity: {fileID: 11400000, guid: cbacc1f924571c64d8c8106a13f3107f, type: 2}
   jumpGravity: {fileID: 11400000, guid: 9173148f240ae284b89f81c4eccc2b0b, type: 2}
+  knockbackSpeed: {fileID: 11400000, guid: 91307479607e82f47ab5a205fecc372f, type: 2}
   stepSounds:
   - {fileID: 8300000, guid: 9a24b52d6dd409645a4698fce6488188, type: 3}
   - {fileID: 8300000, guid: 6d26ee6ef55d95246a7d1d5cbff45bc8, type: 3}
@@ -297,9 +298,8 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: 2a5bf8f697dc8f448baa3b3077236aa4, type: 2}
   iFrames: {fileID: 11400000, guid: 56588162b48474843964d3d57e7d7df6, type: 2}
   lastRespawnPoint: {fileID: 0}
-  damagingLayers:
-    serializedVersion: 2
-    m_Bits: 0
+  enemyCenter: {x: 0, y: 0}
+  takingDamage: 0
 --- !u!82 &4244829643761242643
 AudioSource:
   m_ObjectHideFlags: 0
@@ -545,6 +545,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e474273701e2b4cba6c23d449ff1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliding: 0
+  collisionCenter: {x: 0, y: 0}
+  layers:
+    serializedVersion: 2
+    m_Bits: 256
+  collider2D: {fileID: 2437302142697563269}
 --- !u!1 &8250765566531643970
 GameObject:
   m_ObjectHideFlags: 0

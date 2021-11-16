@@ -40,9 +40,9 @@ public class WallSliding : AXMoveState
             return walljumpState;
         }
 
-        
 
-        return null;
+
+        return base.UpdateLogic(gameObject);
     }
 
     public override void UpdatePhysics(GameObject gameObject) {

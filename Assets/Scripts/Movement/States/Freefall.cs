@@ -19,6 +19,8 @@ public class Freefall: AXMoveState {
 
     public override MovementState UpdateLogic(GameObject gameObject)
     {
+        base.UpdateLogic(gameObject);
+
         PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
         pmc.jump.Consume();
         if (Mathf.Abs(pmc.horizontalAxis) > Mathf.Epsilon)
@@ -41,7 +43,7 @@ public class Freefall: AXMoveState {
             return wallSlidingState;
         }
 
-        return null;
+        return base.UpdateLogic(gameObject);
     }
 
     protected override float getXMoveSpeed(PlayerMovementController pmc, Rigidbody2D rigidbody)

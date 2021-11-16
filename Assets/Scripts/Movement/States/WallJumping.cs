@@ -43,7 +43,7 @@ public class WallJumping : MovementState
             return freefallState;
         }
 
-        return null;
+        return base.UpdateLogic(gameObject);
     }
 
     protected override void applyGravity(Rigidbody2D rigidbody, PlayerMovementController pmc)

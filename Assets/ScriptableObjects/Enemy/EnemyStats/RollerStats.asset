@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RollerStats
   m_EditorClassIdentifier: 
   maxHealth: 30
-  moveSpeed: 1
+  moveSpeed: 3
   chaseSpeed: 1

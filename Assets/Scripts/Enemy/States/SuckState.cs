@@ -18,7 +18,7 @@ public class SuckState : EnemyState
     public override void UpdatePhysics(GameObject gameObject)
     {
         PatrollingAIController eac = gameObject.GetComponent<PatrollingAIController>();
-        eac.transform.position = new Vector2(eac.playerPos.position.x, eac.playerPos.position.y);
+        eac.transform.position = new Vector2(eac.playerCenter.x, eac.playerCenter.y);
         base.UpdatePhysics(gameObject);
 
 

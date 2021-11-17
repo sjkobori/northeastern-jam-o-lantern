@@ -11,7 +11,7 @@ public class HitboxController : MonoBehaviour
     public LayerMask layers;
     // Start is called before the first frame update
     [SerializeField]
-    private BoxCollider2D collider2D;
+    private Collider2D collider2D;
     void Start()
     {
         colliding = false;

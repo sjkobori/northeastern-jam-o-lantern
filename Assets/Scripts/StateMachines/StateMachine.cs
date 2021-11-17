@@ -35,10 +35,10 @@ public abstract class StateMachine<T> : MonoBehaviour where T : class, IBaseStat
 
     }
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         string content = currentState == null ? "NO STATE ASSIGNED" : currentState.GetType().Name;
         GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
     }
-
+    */
 }

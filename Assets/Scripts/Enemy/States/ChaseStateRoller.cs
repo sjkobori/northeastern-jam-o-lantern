@@ -13,13 +13,13 @@ public class ChaseStateRoller : EnemyState
 
         PatrollingAIController ec = gameObject.GetComponent<PatrollingAIController>();
 
-        base.UpdateLogic(gameObject);
+       
         if (!ec.inAggro)
         {
             return patrolState;
         }
 
-        return null;
+        return base.UpdateLogic(gameObject);
     }
 
     public override void UpdatePhysics(GameObject gameObject)
@@ -27,10 +27,10 @@ public class ChaseStateRoller : EnemyState
         Rigidbody2D rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         PatrollingAIController eac = gameObject.GetComponent<PatrollingAIController>();
 
-        float x = this.moveRLTowards(eac.playerPos.position, eac.transform.position, gameObject, eac.stats.chaseSpeed);
+        float x = moveRLTowards(eac.playerCenter, eac.transform.position, gameObject, eac.stats.chaseSpeed);
         eac.transform.position = new Vector2(x, eac.transform.position.y);
 
-        base.applyYForces(rigidbody2D, eac);
+       // base.applyYForces(rigidbody2D, eac);
 
         base.UpdatePhysics(gameObject);
     }

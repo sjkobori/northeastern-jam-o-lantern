@@ -39,19 +39,23 @@ public abstract class EnemyState : ScriptableState<EnemyState> {
     protected float moveRLTowards(Vector2 moveTo, Vector2 moveFrom, GameObject gameObject, float moveSpeed)
     {
         EnemyAIController eac = gameObject.GetComponent<EnemyAIController>();
-        if (moveTo.x > moveFrom.x)
+        
+        float remainingDist = Mathf.Abs(moveTo.x - moveFrom.x);
+        //if we are not there, go there
+        if (remainingDist >= Mathf.Epsilon)
         {
-            eac.transform.localScale = new Vector2(Mathf.Abs(eac.transform.localScale.x), eac.transform.localScale.y);
-            return moveFrom.x + moveSpeed * Time.deltaTime;
-        } else if (moveTo.x + 0.5 < moveFrom.x)
-        {
-            eac.transform.localScale = new Vector2(-Mathf.Abs(eac.transform.localScale.x), eac.transform.localScale.y);
-            return moveFrom.x - moveSpeed * Time.deltaTime;
+            float direction = Mathf.Sign(moveTo.x - moveFrom.x);
+            float moveDistance = Mathf.Min(moveSpeed * Time.fixedDeltaTime, remainingDist);
+            
+            eac.transform.localScale = new Vector2(direction * Mathf.Abs(eac.transform.localScale.x), 
+                eac.transform.localScale.y);
+            return direction * moveDistance + moveFrom.x;
         }
-        else
-        {
-            return moveFrom.x;
-        }
+
+        return moveFrom.x;
+
+        
+
     }
 
     protected float moveUDTowards(Vector2 moveTo, Vector2 moveFrom, GameObject gameObject, float moveSpeed)

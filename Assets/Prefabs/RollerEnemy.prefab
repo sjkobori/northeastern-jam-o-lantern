@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 3732571166802727428}
   - component: {fileID: 8277689141886102399}
   - component: {fileID: 7328003821474867619}
+  - component: {fileID: 4681520916426847155}
   m_Layer: 8
   m_Name: RollerEnemy
   m_TagString: Enemy
@@ -182,14 +183,13 @@ MonoBehaviour:
   wallSideLeft: 0
   wallSideRight: 0
   playerStats: {fileID: 11400000, guid: 2a5bf8f697dc8f448baa3b3077236aa4, type: 2}
-  aggroRadius: 7
+  aggroRadius: 0
   patrolAreas:
   - {fileID: 1395659230014194835}
   - {fileID: 6995991527695275720}
   player:
     serializedVersion: 2
     m_Bits: 512
-  playerPos: {fileID: 0}
   inAggro: 0
   destination: {x: 0, y: 0}
   playerCenter: {x: 0, y: 0}
@@ -206,6 +206,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 11400000, guid: 938c8c0e3188c3145a34de1729dc5a04, type: 2}
+--- !u!95 &4681520916426847155
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732571166802727431}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e79b96a136978b646a474c0c166eabff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3732571167700767227
 GameObject:
   m_ObjectHideFlags: 0

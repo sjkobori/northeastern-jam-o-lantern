@@ -7,7 +7,6 @@ public class AFKState : EnemyState
 
     public override EnemyState UpdateLogic(GameObject gameObject)
     {
-
         return null;
     }
 

@@ -8,6 +8,13 @@ public class PatrollerState : EnemyState
     [SerializeField]
     private EnemyState chaseState;
 
+    public override void Enter(GameObject gameObject) {
+        var animator = gameObject.GetComponentInChildren<Animator>();
+        animator.SetBool("Moving", true);
+        animator.SetFloat("MoveSpeed", 1);
+        base.Enter(gameObject);
+    }
+
     [HideInInspector]
     private bool finishedRight = false;
     public override EnemyState UpdateLogic(GameObject gameObject)

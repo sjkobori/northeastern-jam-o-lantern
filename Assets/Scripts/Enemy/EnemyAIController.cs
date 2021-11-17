@@ -84,7 +84,7 @@ public class EnemyAIController : MonoBehaviour
         dying = true;
         Debug.Log(gameObject.name + " just died :(");
         //die and play animation
-        gameObject.GetComponentInChildren<SpriteRenderer>().sprite = deathSprite;
+        GetComponentInChildren<Animator>().SetTrigger("Death");
         Destroy(gameObject, .5f);
     }
 }   

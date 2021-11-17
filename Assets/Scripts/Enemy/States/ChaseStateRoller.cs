@@ -1,12 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+
 [CreateAssetMenu(fileName = "ChaseStateRoller", menuName = "ScriptableObjects/EnemyStates/ChaseStateRoller", order = 1)]
 public class ChaseStateRoller : EnemyState
 {
 
     [SerializeField]
     private EnemyState patrolState;
+
+    public override void Enter(GameObject gameObject) {
+        var animator = gameObject.GetComponentInChildren<Animator>();
+        PatrollingAIController ec = gameObject.GetComponent<PatrollingAIController>();
+        animator.SetBool("Moving", true);
+        animator.SetFloat("MoveSpeed", ec.stats.chaseSpeed / ec.stats.moveSpeed);
+        base.Enter(gameObject);
+    }
 
     public override EnemyState UpdateLogic(GameObject gameObject)
     {

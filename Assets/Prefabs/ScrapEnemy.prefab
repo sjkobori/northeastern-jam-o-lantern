@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3732571166802727435}
   - component: {fileID: 3732571166802727429}
   - component: {fileID: 3732571166802727428}
-  - component: {fileID: 8277689141886102399}
   - component: {fileID: 4384927959852665845}
+  - component: {fileID: 6691195916658918425}
   m_Layer: 8
   m_Name: ScrapEnemy
   m_TagString: Enemy
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3732571166802727431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3732571167700767224}
   - {fileID: 738997584592134762}
@@ -85,44 +85,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8277689141886102399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3732571166802727431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a912a2552b1dce44aeb800f2b5613fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundPos: {fileID: 3732571167700767224}
-  wallPos: {fileID: 3732571166802727435}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  stats: {fileID: 11400000, guid: bc795c49087afe745bbb01ac354f90ad, type: 2}
-  gravity: {fileID: 11400000, guid: cbacc1f924571c64d8c8106a13f3107f, type: 2}
-  deathSprite: {fileID: 21300000, guid: 03d119aeb8d77254fb8a016426a91e5d, type: 3}
-  moveSpeed: 0
-  currentHealth: 0
-  horizontalAxis: 0
-  verticalAxis: 0
-  jump: 0
-  grounded: 0
-  walled: 0
-  wallSideLeft: 0
-  wallSideRight: 0
-  playerStats: {fileID: 11400000, guid: 2a5bf8f697dc8f448baa3b3077236aa4, type: 2}
-  aggroRadius: 0
-  patrolAreas: []
-  player:
-    serializedVersion: 2
-    m_Bits: 512
-  playerPos: {fileID: 0}
-  inAggro: 0
-  destination: {x: 0, y: 0}
 --- !u!114 &4384927959852665845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +98,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: {fileID: 11400000, guid: b3898ce5e1dc544408e27d0a6eec6df3, type: 2}
+--- !u!114 &6691195916658918425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732571166802727431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fbd6d3deaf376e4cb74036b113133bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundPos: {fileID: 3732571167700767224}
+  wallPos: {fileID: 3732571166802727435}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  stats: {fileID: 11400000, guid: 60846f7bf1618114d8ad271d3d68778d, type: 2}
+  gravity: {fileID: 11400000, guid: cbacc1f924571c64d8c8106a13f3107f, type: 2}
+  deathSprite: {fileID: 0}
+  moveSpeed: 0
+  currentHealth: 0
+  horizontalAxis: 0
+  verticalAxis: 0
+  jump: 0
+  grounded: 0
+  walled: 0
+  wallSideLeft: 0
+  wallSideRight: 0
 --- !u!1 &3732571167700767227
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,8 +242,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9069967798735793134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.05, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 3732571166802727435}
   m_RootOrder: 1
@@ -297,7 +288,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ce6dce3b17995504ea3a6afbe5cc6c8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5726601283ea614eb59ce89e5913172, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

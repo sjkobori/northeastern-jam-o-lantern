@@ -153,6 +153,7 @@ Transform:
   - {fileID: 1116979777}
   - {fileID: 123386098146755744}
   - {fileID: 7017016712899960420}
+  - {fileID: 8907179007372804944}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -277,6 +278,7 @@ MonoBehaviour:
     m_Bits: 256
   meleeStartPos: {fileID: 123386098146755744}
   bullet: {fileID: 4725471182673344888, guid: b150ed39bb25add448230512e733e15b, type: 3}
+  swordHitbox: {fileID: 7296154262386087011}
   shootySound: {fileID: 8300000, guid: 98ea7cebb336b434c939a3997c0b78b9, type: 3}
   noShootySound: {fileID: 8300000, guid: 3ab57d52c659b74409a37f5ec0f13429, type: 3}
   slashySound: {fileID: 8300000, guid: 1da71bd30214a8d4fbaf196afab017fb, type: 3}
@@ -475,6 +477,82 @@ Transform:
   m_Father: {fileID: 3732571166802727435}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6698961628001416462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8907179007372804944}
+  - component: {fileID: 7296154262386087011}
+  - component: {fileID: 7534036142318921218}
+  m_Layer: 12
+  m_Name: SwordHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8907179007372804944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6698961628001416462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3732571166802727435}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &7296154262386087011
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6698961628001416462}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &7534036142318921218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6698961628001416462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e474273701e2b4cba6c23d449ff1e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliding: 0
+  collisionCenter: {x: 0, y: 0}
+  layers:
+    serializedVersion: 2
+    m_Bits: 256
+  collider2D: {fileID: 7296154262386087011}
 --- !u!1 &7407389989315648517
 GameObject:
   m_ObjectHideFlags: 0

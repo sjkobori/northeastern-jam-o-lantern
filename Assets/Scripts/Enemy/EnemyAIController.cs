@@ -32,7 +32,7 @@ public class EnemyAIController : MonoBehaviour
     [HideInInspector]
     public bool wallSideRight;
 
-    public PlayerStats playerStats; 
+    //public PlayerStats playerStats; 
 
     private bool dying;
 
@@ -84,7 +84,11 @@ public class EnemyAIController : MonoBehaviour
         dying = true;
         Debug.Log(gameObject.name + " just died :(");
         //die and play animation
-        GetComponentInChildren<Animator>().SetTrigger("Death");
+        var animator = GetComponentInChildren<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("Death");
+        }
         Destroy(gameObject, .5f);
     }
 }   

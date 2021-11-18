@@ -29,6 +29,8 @@ public class PlayerAttackController : MonoBehaviour
     private float _meleeAttackTime;
     private float _currentMeleeAttackTime;
     private List<EnemyAIController> hitList;
+    
+    private AudioSource audioSrc;
 
     // Start is called before the first frame update
     void Awake()
@@ -38,6 +40,7 @@ public class PlayerAttackController : MonoBehaviour
         _meleeAttackTime = 5/6f;
         _meleeAttacking = false;
         ResetHitlist();
+        audioSrc = GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
@@ -123,14 +126,14 @@ public class PlayerAttackController : MonoBehaviour
             playerStats.ammo--;
             PlayerMovementController pmc = gameObject.GetComponent<PlayerMovementController>();
             float directionFacing = Mathf.Sign(pmc.facing.x);
-            gameObject.GetComponentInChildren<AudioSource>().PlayOneShot(shootySound, 0.25f);
+            audioSrc.PlayOneShot(shootySound, 0.25f);
        
             ProjectileController bulletController = Instantiate(bullet, new Vector3(directionFacing, 0, 0) + transform.position, Quaternion.identity).GetComponent<ProjectileController>();
 
             bulletController.dir = Vector2.right * directionFacing;
         } else
         {
-            gameObject.GetComponentInChildren<AudioSource>().PlayOneShot(noShootySound, 0.25f);
+            audioSrc.PlayOneShot(noShootySound, 0.25f);
 
         }
         

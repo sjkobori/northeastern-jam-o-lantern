@@ -12,12 +12,15 @@ public class PlayerController : MonoBehaviour
     private FloatReference iFrames;
     private float invincibility;
     public Transform lastRespawnPoint;
+    [SerializeField] private List<AudioClip> hurtSounds;
 
     private HitboxController _hitbox;
     [HideInInspector]
     public Vector2 enemyCenter;
     [HideInInspector]
     public bool takingDamage;
+
+    private AudioSource audioSrc;
 
     /// <summary>
     /// controls taking dmg
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour
         playerStats.playerPos = transform.position;
         invincibility = iFrames.value;
         _hitbox = GetComponentInChildren<HitboxController>();
+        audioSrc = GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
@@ -46,11 +50,6 @@ public class PlayerController : MonoBehaviour
         if (invincibility > 0)
         {
             invincibility -= Time.deltaTime;
-        }
-        
-        if (playerStats.health <= 0)
-        {
-            Die();
         }
     }
 
@@ -69,6 +68,14 @@ public class PlayerController : MonoBehaviour
         playerStats.health--;
         invincibility = iFrames.value;
         takingDamage = true;
+        
+        if (playerStats.health <= 0)
+        {
+            Die();
+        }
+        else {
+            PlayHurtSound();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -88,40 +95,37 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        //Debug.Log("Player got hit by: " + collision.gameObject.name);
-       // playerStats.health--;
-        //if hitting enemy or hazard && noIframes
-        
-        if (invincibility < 0)
-        {
-            EnemyAIController ec;
-            ProjectileController pc;
-            HazardController hc;
-            if ((collision.gameObject.TryGetComponent(out ec) ||
-            collision.gameObject.TryGetComponent(out pc) ||
-            collision.gameObject.TryGetComponent(out hc)))
-            {
-                Debug.Log("Player got hit by: " + collision.gameObject.name);
-                TakeDamage();
-                if (collision.gameObject.TryGetComponent(out hc))
-                {
-                    Respawn();
-                }
-            }
+        EnemyAIController ec;
+        ProjectileController pc;
+        HazardController hc;
+        if (collision.gameObject.TryGetComponent(out hc)) {
+            Debug.Log("Player got hit by: " + collision.gameObject.name);
+            Die();
         }
-       
+        else if (invincibility <= 0 &&
+                 (collision.gameObject.TryGetComponent(out ec) ||
+                  collision.gameObject.TryGetComponent(out pc)))
+        {
+            Debug.Log("Player got hit by: " + collision.gameObject.name);
+            TakeDamage();
+        }
     }
 
-    private void Die()
-    {
-        //reset health
-        playerStats.resetHealth();
-        //go back to respawn
+    private void Die() {
+        PlayHurtSound();
         Respawn();
+    }
+
+    private void PlayHurtSound() {
+        AudioClip clip = hurtSounds[UnityEngine.Random.Range(0, hurtSounds.Count)];
+        audioSrc.PlayOneShot(clip, 0.4f);
     }
 
     private void Respawn()
     {
+        //reset health
+        playerStats.resetHealth();
+        //go back to last spawn point
         transform.position = lastRespawnPoint.position;
     }
 

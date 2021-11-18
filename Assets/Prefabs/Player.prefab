@@ -300,6 +300,9 @@ MonoBehaviour:
   playerStats: {fileID: 11400000, guid: 2a5bf8f697dc8f448baa3b3077236aa4, type: 2}
   iFrames: {fileID: 11400000, guid: 56588162b48474843964d3d57e7d7df6, type: 2}
   lastRespawnPoint: {fileID: 0}
+  hurtSounds:
+  - {fileID: 8300000, guid: ddb3bbd0edbae2a439fd98c810d3dade, type: 3}
+  - {fileID: 8300000, guid: 4683c04a772880645bb26ba9d73eb792, type: 3}
   enemyCenter: {x: 0, y: 0}
   takingDamage: 0
 --- !u!82 &4244829643761242643

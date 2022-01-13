@@ -32,9 +32,9 @@ public class EnemyAIController : MonoBehaviour
     [HideInInspector]
     public bool wallSideRight;
 
-    //public PlayerStats playerStats; 
 
-    private bool dying;
+    [HideInInspector]
+    public bool dying;
 
     protected virtual void Awake()
     {
@@ -51,7 +51,7 @@ public class EnemyAIController : MonoBehaviour
         {
            Die();
         }
-
+        Debug.Log("Dying is: " + dying);
         wallSideLeft = false;
         wallSideRight = false;
         grounded = Physics2D.OverlapBoxAll(groundPos.position, new Vector2(.5f * transform.localScale.x, 0.1f * transform.localScale.y), 0, groundLayer).Length > 0;
@@ -83,13 +83,8 @@ public class EnemyAIController : MonoBehaviour
     {
         dying = true;
         Debug.Log(gameObject.name + " just died :(");
-        //die and play animation
-        var animator = GetComponentInChildren<Animator>();
-        if (animator != null)
-        {
-            animator.SetTrigger("Death");
-        }
-        Destroy(gameObject, .5f);
+        Debug.Log("Dying is: " + dying);
+
     }
 }   
 

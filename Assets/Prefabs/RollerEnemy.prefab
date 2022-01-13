@@ -77,9 +77,10 @@ GameObject:
   - component: {fileID: 3732571166802727435}
   - component: {fileID: 3732571166802727429}
   - component: {fileID: 3732571166802727428}
-  - component: {fileID: 8277689141886102399}
   - component: {fileID: 7328003821474867619}
   - component: {fileID: 4681520916426847155}
+  - component: {fileID: 1882761287666257369}
+  - component: {fileID: 3804099760275343368}
   m_Layer: 8
   m_Name: RollerEnemy
   m_TagString: Enemy
@@ -153,46 +154,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3389452, y: 1.4638194}
   m_EdgeRadius: 0
---- !u!114 &8277689141886102399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3732571166802727431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a912a2552b1dce44aeb800f2b5613fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundPos: {fileID: 3732571167700767224}
-  wallPos: {fileID: 3732571166802727435}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  stats: {fileID: 11400000, guid: bc795c49087afe745bbb01ac354f90ad, type: 2}
-  gravity: {fileID: 11400000, guid: cbacc1f924571c64d8c8106a13f3107f, type: 2}
-  deathSprite: {fileID: 21300000, guid: 08a8f059c4ed96b48a77da3a72f12cc4, type: 3}
-  moveSpeed: 0
-  currentHealth: 0
-  horizontalAxis: 0
-  verticalAxis: 0
-  jump: 0
-  grounded: 0
-  walled: 0
-  wallSideLeft: 0
-  wallSideRight: 0
-  playerStats: {fileID: 11400000, guid: 2a5bf8f697dc8f448baa3b3077236aa4, type: 2}
-  aggroRadius: 0
-  patrolAreas:
-  - {fileID: 1395659230014194835}
-  - {fileID: 6995991527695275720}
-  player:
-    serializedVersion: 2
-    m_Bits: 512
-  inAggro: 0
-  destination: {x: 0, y: 0}
-  playerCenter: {x: 0, y: 0}
 --- !u!114 &7328003821474867619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a647ddf288a14cb40b4f91857c3c4870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialState: {fileID: 11400000, guid: 938c8c0e3188c3145a34de1729dc5a04, type: 2}
+  initialState: {fileID: 11400000, guid: e41a7a6270819eb46bb9fc8aa9c8670f, type: 2}
 --- !u!95 &4681520916426847155
 Animator:
   serializedVersion: 3
@@ -225,6 +186,49 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1882761287666257369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732571166802727431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15ca7fe4584adc543a21ddc6525f8448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3804099760275343368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3732571166802727431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a0bd3a32c0acf4989b0fc3fe8f76ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundPos: {fileID: 3732571167700767224}
+  wallPos: {fileID: 3732571166802727435}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  stats: {fileID: 11400000, guid: bc795c49087afe745bbb01ac354f90ad, type: 2}
+  gravity: {fileID: 11400000, guid: cbacc1f924571c64d8c8106a13f3107f, type: 2}
+  deathSprite: {fileID: 0}
+  moveSpeed: 0
+  currentHealth: 0
+  horizontalAxis: 0
+  verticalAxis: 0
+  jump: 0
+  grounded: 0
+  walled: 0
+  wallSideLeft: 0
+  wallSideRight: 0
+  dying: 0
+  facing: {x: 0, y: 0}
 --- !u!1 &3732571167700767227
 GameObject:
   m_ObjectHideFlags: 0
